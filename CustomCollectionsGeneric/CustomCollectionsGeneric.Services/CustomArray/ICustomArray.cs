@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomCollectionsGeneric.Services.CustomArray
 {
@@ -11,7 +7,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
     {
         void IsReadOnly(bool isReadOnly);
 
-        ReadOnlyCollection<T> AsReadOnly(T[] array);
+        ReadOnlyCollection<T> AsReadOnly();
         void Clear();
         void Clear(int index);
         void Clear(int index, int length);

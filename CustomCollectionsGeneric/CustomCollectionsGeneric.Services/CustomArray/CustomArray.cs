@@ -13,7 +13,6 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         private T[] array = null;
         public int Length => array.Length;
         private int currentIndex;
-        private int lastItemIndex;
         private T defaultValue = default(T);
 
         /// <summary>
@@ -25,7 +24,6 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             this.array = new T[length];
             this.isReadOnly = false;
             this.currentIndex = 0;
-            this.lastItemIndex = 0;
         }
 
         public T this[int index]
@@ -60,27 +58,14 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Adds the given item in the end of the array
-        /// </summary>
-        /// <param name="item">Item to add</param>
-        /// <exception cref="IndexOutOfRangeException">The error can be thrown if array is full</exception>
-        private void Add(T item)
-        {
-            if (this.lastItemIndex >= this.Length)
-                throw new IndexOutOfRangeException(noMoreSpace + this.GetType().Name);
-            InsertAt(lastItemIndex,item);
-            lastItemIndex++;
-        }
-
-        /// <summary>
         /// Makes an given array to readonly array
         /// </summary>
         /// <param name="array">Array to make readonly</param>
         /// <returns>Returns the array as readonly</returns>
         /// <exception cref="ArgumentNullException">The error can be thrown if array is null</exception>
-        public ReadOnlyCollection<T> AsReadOnly(T[] array)
+        public ReadOnlyCollection<T> AsReadOnly()
         {
-            var readOnly = new ReadOnlyCollection<T>(array);
+            var readOnly = new ReadOnlyCollection<T>(this.array);
             return readOnly;
         }
 
@@ -88,7 +73,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// Makes current array readonly or not. If true the array cannot be changed after this only can be read.
         /// </summary>
         /// <param name="isReadOnly">To be readonly or not</param>
-        public void AsReadOnly(bool isReadOnly)
+        public void IsReadOnly(bool isReadOnly)
         {
             this.isReadOnly = isReadOnly;
         }
@@ -107,10 +92,9 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             if (isReadOnly)
                 throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
             int? countToGet = null;
-            if (length >= this.Length)
+            if (index + length >= this.Length)
             {
-                countToGet = this.Length - index;
-                return;
+                countToGet = this.Length - 1;
             }
             int? realLength = countToGet == null ? length : countToGet;
             for (int i = index; i <= realLength; i++)
@@ -141,6 +125,8 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// </summary>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values</exception>
         public void Clear()
+        //I think it's better to create newly array instead of 
+        //foreaching all elements and sets their value to default
         {
             if (isReadOnly)
                 throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
@@ -164,19 +150,19 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             var newArray = new CustomArray<T>(Length);
             for (int i = 0; i < newArray.Length; i++)
             {
-                newArray.Add(this[i]);
+                newArray[i] = array[i];
             }
             return newArray;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
+            Reset();
             while (HasNext())
             {
                 yield return this[currentIndex];
                 MoveNext();
             }
-            Reset();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -201,18 +187,17 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             return false;
         }
 
-        public void IsReadOnly(bool isReadOnly)
-        {
-            this.isReadOnly = isReadOnly;
-        }
-
-
         /// <summary>
         /// Makes newly array with default values
         /// </summary>
         /// <param name="length">The length of the array</param>
         /// <returns>Newly array</returns>
-        public CustomArray<T> Empty(int length) => new CustomArray<T>(length);
+        public CustomArray<T> Empty(int length)
+        {
+            if (length <= 0)
+                throw new ArgumentException(cannotCreateEmptyArray);
+            return new CustomArray<T>(length);
+        }
 
         /// <summary>
         /// Fills the whole array with given value
@@ -239,7 +224,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             var newlyArray = new CustomArray<T>(tempArr.Length);
             for (int i = 0; i < tempArr.Length; i++)
             {
-                newlyArray.Add(tempArr[i]);
+                newlyArray[i] = tempArr[i];
             }
             return newlyArray;
         }
