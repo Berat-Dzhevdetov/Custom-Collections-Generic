@@ -15,7 +15,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         void Clear();
         void Clear(int index);
         void Clear(int index, int length);
-        public object Clone();
+        public CustomArray<T> Clone();
         public CustomArray<T> Empty(int length);
         public void Fill(T value);
 
