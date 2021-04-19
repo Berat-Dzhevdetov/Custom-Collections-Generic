@@ -11,12 +11,22 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         void Clear();
         void Clear(int index);
         void Clear(int index, int length);
-        public CustomArray<T> Clone();
-        public CustomArray<T> Empty(int length);
-        public void Fill(T value);
+        CustomArray<T> Clone();
+        CustomArray<T> Empty(int length);
+        void Fill(T value);
 
-        public CustomArray<T> Find(Func<T, bool> predicate);
+        CustomArray<T> FindAll(Func<T, bool> predicate);
+        T Find(Func<T, bool> predicate);
+        T FindLast(Func<T, bool> predicate);
+        bool Exists(Func<T, bool> predicate);
 
-        public bool Exists(Func<T, bool> predicate);
+        int IndexOf(T index);
+        int LastIndexOf(T item);
+        void Resize(int newLength);
+        void Reverse();
+        void Sort();
+        bool Any();
+        bool Any(Func<T, bool> predicate);
+
     }
 }

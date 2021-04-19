@@ -14,6 +14,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         public int Length => array.Length;
         private int currentIndex;
         private T defaultValue = default(T);
+        public bool IsFixedSize = true;
 
         /// <summary>
         /// Constructor that initialise a new instance of CustomArray with given length
@@ -51,6 +52,8 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <exception cref="IndexOutOfRangeException">The error can be thrown if the given index is less than zero or bigger than the length of the array</exception>
         private void InsertAt(int index, T item)
         {
+            if (!Any())
+                return;
             CheckForIndexesRange(index);
             if (isReadOnly)
                 throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
@@ -87,6 +90,8 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values</exception>
         public void Clear(int index, int length)
         {
+            if (!Any())
+                return;
             CheckForIndexesRange(index);
             CheckForIndexesRange(length);
             if (isReadOnly)
@@ -112,6 +117,8 @@ namespace CustomCollectionsGeneric.Services.CustomArray
 
         public void Clear(int index)
         {
+            if (!Any())
+                return;
             CheckForIndexesRange(index);
             if (isReadOnly)
                 throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
@@ -147,8 +154,22 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <returns>Newly array with filled values</returns>
         public CustomArray<T> Clone()
         {
+            if (!Any())
+                return new CustomArray<T>(Length);
             var newArray = new CustomArray<T>(Length);
             for (int i = 0; i < newArray.Length; i++)
+            {
+                newArray[i] = array[i];
+            }
+            return newArray;
+        }
+
+        private T[] Clone(int newSize)
+        {
+            if (!Any())
+                return new T[Length];
+            var newArray = new T[Length];
+            for (int i = 0; i < array.Length; i++)
             {
                 newArray[i] = array[i];
             }
@@ -194,6 +215,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <returns>Newly array</returns>
         public CustomArray<T> Empty(int length)
         {
+
             if (length <= 0)
                 throw new ArgumentException(cannotCreateEmptyArray);
             return new CustomArray<T>(length);
@@ -208,6 +230,8 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         {
             if (isReadOnly)
                 throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+            if (!Any())
+                return;
             for (int i = 0; i < this.Length; i++)
             {
                 this.array[i] = value;
@@ -218,8 +242,10 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>Newly array with elements</returns>
-        public CustomArray<T> Find(Func<T, bool> predicate)
+        public CustomArray<T> FindAll(Func<T, bool> predicate)
         {
+            if (!Any())
+                return new CustomArray<T>(0);
             var tempArr = array.Where(predicate).ToArray();
             var newlyArray = new CustomArray<T>(tempArr.Length);
             for (int i = 0; i < tempArr.Length; i++)
@@ -228,7 +254,15 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             }
             return newlyArray;
         }
-
+        /// <summary>
+        /// Looks for item with given conditions; if not found will return default value of the variable
+        /// </summary>
+        /// <param name="predicate">Predicate</param>
+        /// <returns>Returns first foun element</returns>
+        public T Find(Func<T, bool> predicate)
+        {
+            return array.FirstOrDefault(predicate);
+        }
         /// <summary>
         /// Search for an element that meet a given condition
         /// </summary>
@@ -236,8 +270,96 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <returns>Returns true if one of all elements meet with the given condition;otherwise false</returns>
         public bool Exists(Func<T, bool> predicate)
         {
+            if (!Any())
+                return false;
             var tempArr = array.Where(predicate).ToArray();
             return tempArr.Length >= 1 ? true : false;
         }
+
+        /// <summary>
+        /// Search for an element that meet a given condition
+        /// </summary>
+        /// <param name="predicate">defines the conditions of the element to search for.</param>
+        /// <returns>Last found item or first</returns>
+        public T FindLast(Func<T, bool> predicate)
+        {
+            return array.LastOrDefault(predicate);
+        }
+        /// <summary>
+        /// Trying to look for given item
+        /// </summary>
+        /// <param name="item">Item to look for</param>
+        /// <returns>If item is found it will return his index; otherwise will return -1</returns>
+        public int IndexOf(T item)
+        {
+            if (!Any())
+                return -1;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (item.Equals(array[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        /// <summary>
+        /// Trying to look for given item reversed
+        /// </summary>
+        /// <param name="item">Item to look for</param>
+        /// <returns>If item is found it will return his index; otherwise will return -1 or if array is emty</returns>
+        public int LastIndexOf(T item)
+        {
+            if (!Any())
+                return -1;
+            for (int i = array.Length - 1; i >= 0; i--)
+            {
+                if (item.Equals(array[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        public void Resize(int newLength)
+        {
+            if (isReadOnly)
+                throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+            this.array = Clone(newLength);
+        }
+        public void Reverse()
+        {
+            if (isReadOnly)
+                throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+            if (!Any())
+                return;
+            var newArray = new T[Length];
+            int counter = 0;
+            for (int i = array.Length - 1; i >= 0; i--,counter++)
+            {
+                newArray[counter] = array[i];
+            }
+            this.array = newArray;
+        }
+        public void Sort()
+        {
+            if (isReadOnly)
+                throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+            if (!Any())
+                return;
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = 1; j < array.Length; j++)
+                {
+                    if (i > j)
+                    {
+
+                    }
+                }
+            }
+        }
+
+        public bool Any() => Length >= 1 ? true : false;
+        public bool Any(Func<T, bool> predicate) => array.Any(predicate);
     }
 }

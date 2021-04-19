@@ -259,16 +259,27 @@ namespace CustomCollectionsGeneric.Tests
             Assert.AreEqual(ex.Message, cannotAccessWhileArrayIsReadOnly);
         }
         [TestMethod]
-        public void FindShouldFindInArrayWithPredicate()
+        public void FindAllShouldFindInArrayWithPredicate()
         {
             //Assert
             var expectedLength = 1;
             var expectedNumber = 20;
             //Act
-            var newlyArray = array.Find(x => x == 20);
+            var newlyArray = array.FindAll(x => x == 20);
             //Assert
             Assert.AreEqual(expectedLength, newlyArray.Length);
             Assert.AreEqual(expectedNumber, newlyArray[0]);
+        }
+        [TestMethod]
+        public void FindAllShouldNotFindAnyThingInArrayWithPredicate()
+        {
+            //Assert
+            var expectedLength = 0;
+            //Act
+            var newlyArray = array.FindAll(x => x >= 300);
+            //Assert
+            Assert.AreEqual(expectedLength, newlyArray.Length);
+
         }
         [TestMethod]
         public void FindShouldNotFindAnyThingInArrayWithPredicate()
@@ -276,9 +287,20 @@ namespace CustomCollectionsGeneric.Tests
             //Assert
             var expectedLength = 0;
             //Act
-            var newlyArray = array.Find(x => x >= 300);
+            var item = array.Find(x => x >= 300);
             //Assert
-            Assert.AreEqual(expectedLength, newlyArray.Length);
+            Assert.AreEqual(expectedLength, item);
+
+        }
+        [TestMethod]
+        public void FindShouldFindInArrayWithPredicate()
+        {
+            //Assert
+            var expectedResult = 30;
+            //Act
+            var item = array.Find(x => x == 30);
+            //Assert
+            Assert.AreEqual(expectedResult, item);
 
         }
         [TestMethod]
