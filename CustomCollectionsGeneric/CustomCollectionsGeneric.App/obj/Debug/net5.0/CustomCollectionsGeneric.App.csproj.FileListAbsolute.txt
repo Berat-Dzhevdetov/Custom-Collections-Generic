@@ -14,3 +14,6 @@ D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCol
 D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\ref\CustomCollectionsGeneric.App.dll
 D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.pdb
 D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.genruntimeconfig.cache
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\CustomCollectionsGeneric.Services.dll
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\CustomCollectionsGeneric.Services.pdb
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.csproj.CopyComplete

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "CustomCollectionsGeneric.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/CustomCollectionsGeneric.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CustomCollectionsGeneric.Services.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CustomCollectionsGeneric.Services/1.0.0": {
+      "type": "project",
+      "path": "../CustomCollectionsGeneric.Services/CustomCollectionsGeneric.Services.csproj",
+      "msbuildProject": "../CustomCollectionsGeneric.Services/CustomCollectionsGeneric.Services.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "CustomCollectionsGeneric.Services >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Bero\\.nuget\\packages\\": {},
@@ -41,7 +60,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Users\\Bero\\source\\repos\\Berat-Dzhevdetov\\Custom-Collections-Generic\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomCollectionsGeneric.Services.csproj": {
+              "projectPath": "D:\\Users\\Bero\\source\\repos\\Berat-Dzhevdetov\\Custom-Collections-Generic\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomCollectionsGeneric.Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
