@@ -69,13 +69,13 @@ namespace CustomCollectionsGeneric.Tests
             //Act
             var exceptedResult = 20;
             //Assert
-            Assert.AreEqual(exceptedResult,a[1]);
+            Assert.AreEqual(exceptedResult, a[1]);
         }
         [TestMethod]
         public void ClearShouldThrowIndexOutOfRangeExceptionWithBigStartIndex()
         {
             //Act
-            var ex = Assert.ThrowsException<IndexOutOfRangeException>(() => array.Clear(78,3));
+            var ex = Assert.ThrowsException<IndexOutOfRangeException>(() => array.Clear(78, 3));
             //Assert
             Assert.AreEqual(ex.Message, theGivenParametarWasTooBig);
         }
@@ -118,7 +118,7 @@ namespace CustomCollectionsGeneric.Tests
         public void ClearShouldClearEvenIfIndexIsOneOfLastsAndLengthIsTooBig()
         {
             //Act
-            array.Clear(3,4);
+            array.Clear(3, 4);
             //Assert
             var expectedResuls = new[] { 10, 20, 30, 0, 0 };
             for (int i = 0; i < expectedResuls.Length; i++)
@@ -205,6 +205,7 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void GetEnumerator()
         {
+            //Arrange
             var expectedResuls = "10\r\n20\r\n30\r\n40\r\n50\r\n";
             //Act
             var sb = new StringBuilder();
@@ -222,7 +223,7 @@ namespace CustomCollectionsGeneric.Tests
             //Act
             var expectedLength = 10;
             var firstExpectedItem = 33;
-            newlyArray[1] = 33; 
+            newlyArray[1] = 33;
             //Assert
             Assert.AreEqual(expectedLength, newlyArray.Length);
             Assert.AreEqual(firstExpectedItem, newlyArray[1]);
@@ -238,8 +239,8 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void FillShouldFillTheWholeArrayWithGivenValue()
         {
-            //Assert
-            var expectedResult = new[] { 100,100,100,100,100 };
+            //Arrange
+            var expectedResult = new[] { 100, 100, 100, 100, 100 };
             //Act
             array.Fill(100);
             //Assert
@@ -251,7 +252,7 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void FillShouldThrowFieldAccessExceptionIfArrayIsReadOnly()
         {
-            //Assert
+            //Arrange
             array.IsReadOnly(true);
             //Act
             var ex = Assert.ThrowsException<FieldAccessException>(() => array.Fill(100));
@@ -261,7 +262,7 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void FindAllShouldFindInArrayWithPredicate()
         {
-            //Assert
+            //Arrange
             var expectedLength = 1;
             var expectedNumber = 20;
             //Act
@@ -273,7 +274,7 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void FindAllShouldNotFindAnyThingInArrayWithPredicate()
         {
-            //Assert
+            //Arrange
             var expectedLength = 0;
             //Act
             var newlyArray = array.FindAll(x => x >= 300);
@@ -284,7 +285,7 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void FindShouldNotFindAnyThingInArrayWithPredicate()
         {
-            //Assert
+            //Arrange
             var expectedLength = 0;
             //Act
             var item = array.Find(x => x >= 300);
@@ -295,7 +296,7 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void FindShouldFindInArrayWithPredicate()
         {
-            //Assert
+            //Arrange
             var expectedResult = 30;
             //Act
             var item = array.Find(x => x == 30);
@@ -306,7 +307,7 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void ExistsShouldFindThatThereIsNumberBiggerThan40()
         {
-            //Assert
+            //Arrange
             var expectedResult = true;
             //Act
             var newlyArray = array.Exists(x => x >= 40);
@@ -316,12 +317,209 @@ namespace CustomCollectionsGeneric.Tests
         [TestMethod]
         public void ExistsShouldNotFindAnyThignkThatThereIsNumberBiggerThan400()
         {
-            //Assert
+            //Arrange
             var expectedResult = false;
             //Act
             var newlyArray = array.Exists(x => x >= 400);
             //Assert
             Assert.AreEqual(expectedResult, newlyArray);
+        }
+        [TestMethod]
+        public void FindLastShouldFindLast40()
+        {
+            //Arrange
+            array[2] = 40;
+            var expectedResult = 40;
+            //Act
+            var item = array.FindLast(x => x == 40);
+            //Assert
+            Assert.AreEqual(expectedResult, item);
+        }
+        [TestMethod]
+        public void IndexOfShouldReturnOneIfWeAreLookingFor20()
+        {
+            //Arrange
+            var expectedResult = 1;
+            //Act
+            var item = array.IndexOf(20);
+            //Assert
+            Assert.AreEqual(expectedResult, item);
+        }
+        [TestMethod]
+        public void IndexOfShouldReturnMinusOneIfWeAreLookingFor60()
+        {
+            //Arrange
+            var expectedResult = -1;
+            //Act
+            var item = array.IndexOf(60);
+            //Assert
+            Assert.AreEqual(expectedResult, item);
+        }
+        [TestMethod]
+        public void LastIndexOfShouldReturnOneIfWeAreLookingFor20()
+        {
+            //Arrange
+            array[0] = 20;
+            var expectedResult = 1;
+            //Act
+            var item = array.LastIndexOf(20);
+            //Assert
+            Assert.AreEqual(expectedResult, item);
+        }
+        [TestMethod]
+        public void LastIndexOfShouldReturnMinusOneIfWeAreLookingFor60()
+        {
+            //Arrange
+            var expectedResult = -1;
+            //Act
+            var item = array.LastIndexOf(60);
+            //Assert
+            Assert.AreEqual(expectedResult, item);
+        }
+        [TestMethod]
+        public void ResizeShouldMakeArrayBigger()
+        {
+            //Arrange
+            var expectedResult = array.Length + 3;
+            //Act
+            array.Resize(8);
+            //Assert
+            Assert.AreEqual(expectedResult, array.Length);
+            Assert.AreEqual(10, array[0]);
+            Assert.AreEqual(20, array[1]);
+        }
+        [TestMethod]
+        public void ResizeShouldMakeArraySmaller()
+        {
+            //Arrange
+            var expectedResult = array.Length - 3;
+            //Act
+            array.Resize(2);
+            //Assert
+            Assert.AreEqual(expectedResult, array.Length);
+            Assert.AreEqual(10, array[0]);
+            Assert.AreEqual(20, array[1]);
+        }
+        [TestMethod]
+        public void ResizeShouldThrowFieldAccessExceptionIfArrayIsReadOnly()
+        {
+            //Arange
+            array.IsReadOnly(true);
+            //Act
+            var ex = Assert.ThrowsException<FieldAccessException>(() => array.Resize(12));
+            //Assert
+            Assert.AreEqual(ex.Message, cannotAccessWhileArrayIsReadOnly);
+
+        }
+        [TestMethod]
+        public void ReverseShouldReverseTheArray()
+        {
+            //Act
+            array.Reverse();
+            //Assert
+            Assert.AreEqual(array[0], 50);
+            Assert.AreEqual(array[1], 40);
+            Assert.AreEqual(array[2], 30);
+            Assert.AreEqual(array[3], 20);
+            Assert.AreEqual(array[4], 10);
+        }
+        [TestMethod]
+        public void ReverseShouldThrowFieldAccessExceptionIfArrayIsReadOnly()
+        {
+            //Arange
+            array.IsReadOnly(true);
+            //Act
+            var ex = Assert.ThrowsException<FieldAccessException>(() => array.Reverse());
+            //Assert
+            Assert.AreEqual(ex.Message, cannotAccessWhileArrayIsReadOnly);
+
+        }
+        [TestMethod]
+        public void SortShouldSortAcendingTheArray()
+        {
+            //Arange
+            array[0] = 30;
+            array[1] = 50;
+            array[2] = 40;
+            array[3] = 20;
+            array[4] = 10;
+            //Act
+            array.Sort();
+            //Assert
+            Assert.AreEqual(array[0], 10);
+            Assert.AreEqual(array[1], 20);
+            Assert.AreEqual(array[2], 30);
+            Assert.AreEqual(array[3], 40);
+            Assert.AreEqual(array[4], 50);
+        }
+        [TestMethod]
+        public void SortShouldThrowFieldAccessExceptionIfArrayIsReadOnly()
+        {
+            //Arange
+            array.IsReadOnly(true);
+            //Act
+            var ex = Assert.ThrowsException<FieldAccessException>(() => array.Sort());
+            //Assert
+            Assert.AreEqual(ex.Message, cannotAccessWhileArrayIsReadOnly);
+        }
+        [TestMethod]
+        public void SortDescendingShouldSortAcendingTheArray()
+        {
+            //Arange
+            array[0] = 30;
+            array[1] = 50;
+            array[2] = 40;
+            array[3] = 20;
+            array[4] = 10;
+            //Act
+            array.SortDescending();
+            //Assert
+            Assert.AreEqual(array[0], 50);
+            Assert.AreEqual(array[1], 40);
+            Assert.AreEqual(array[2], 30);
+            Assert.AreEqual(array[3], 20);
+            Assert.AreEqual(array[4], 10);
+        }
+        [TestMethod]
+        public void SortDescendingShouldThrowFieldAccessExceptionIfArrayIsReadOnly()
+        {
+            //Arange
+            array.IsReadOnly(true);
+            //Act
+            var ex = Assert.ThrowsException<FieldAccessException>(() => array.SortDescending());
+            //Assert
+            Assert.AreEqual(ex.Message, cannotAccessWhileArrayIsReadOnly);
+        }
+        [TestMethod]
+        public void AnyShouldReturnTrueIfThereIsSomethingInTheArray()
+        {
+            //Arange
+            var expectedResult = true;
+            //Act
+            var actualResult = array.Any();
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
+        [TestMethod]
+        public void AnyShouldReturnTrueIfThereIsSomethingInTheArrayThatMeetTheGivenConditions()
+        {
+            //Arange
+            var expectedResult = true;
+            //Act
+            var actualResult = array.Any(x => x == 50);
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void AnyShouldReturnFalseIfThereIsSomethingInTheArrayThatMeetTheGivenConditions()
+        {
+            //Arange
+            var expectedResult = false;
+            //Act
+            var actualResult = array.Any(x => x == 580);
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
         }
     }
 }

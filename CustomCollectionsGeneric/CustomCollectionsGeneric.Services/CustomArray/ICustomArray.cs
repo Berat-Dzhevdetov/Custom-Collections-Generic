@@ -25,8 +25,8 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         void Resize(int newLength);
         void Reverse();
         void Sort();
+        void SortDescending();
         bool Any();
         bool Any(Func<T, bool> predicate);
-
     }
 }
