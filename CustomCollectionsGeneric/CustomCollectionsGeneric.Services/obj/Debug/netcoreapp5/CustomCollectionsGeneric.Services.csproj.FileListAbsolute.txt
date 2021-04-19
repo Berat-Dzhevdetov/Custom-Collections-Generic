@@ -1,0 +1,5 @@
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.Services\obj\Debug\netcoreapp5\CustomCollectionsGeneric.Services.csprojAssemblyReference.cache
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.Services\obj\Debug\netcoreapp5\CustomCollectionsGeneric.Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.Services\obj\Debug\netcoreapp5\CustomCollectionsGeneric.Services.AssemblyInfoInputs.cache
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.Services\obj\Debug\netcoreapp5\CustomCollectionsGeneric.Services.AssemblyInfo.cs
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.Services\obj\Debug\netcoreapp5\CustomCollectionsGeneric.Services.csproj.CoreCompileInputs.cache

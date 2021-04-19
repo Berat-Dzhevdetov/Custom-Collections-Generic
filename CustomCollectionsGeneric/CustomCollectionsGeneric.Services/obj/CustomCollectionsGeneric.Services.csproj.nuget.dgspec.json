@@ -32,7 +32,7 @@
         },
         "frameworks": {
           "net5.0": {
-            "targetAlias": "netcoreapp5",
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -44,7 +44,7 @@
       },
       "frameworks": {
         "net5.0": {
-          "targetAlias": "netcoreapp5",
+          "targetAlias": "net5.0",
           "imports": [
             "net461",
             "net462",

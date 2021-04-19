@@ -1,4 +1,5 @@
-﻿namespace CustomCollectionsGeneric.Services
+﻿
+namespace CustomCollectionsGeneric.Services
 {
     public static class Message
     {

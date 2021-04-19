@@ -1,0 +1,16 @@
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\CustomCollectionsGeneric.App.exe
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\CustomCollectionsGeneric.App.deps.json
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\CustomCollectionsGeneric.App.runtimeconfig.json
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\CustomCollectionsGeneric.App.runtimeconfig.dev.json
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\CustomCollectionsGeneric.App.dll
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\ref\CustomCollectionsGeneric.App.dll
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\bin\Debug\net5.0\CustomCollectionsGeneric.App.pdb
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.csprojAssemblyReference.cache
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.AssemblyInfoInputs.cache
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.AssemblyInfo.cs
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.csproj.CoreCompileInputs.cache
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.dll
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\ref\CustomCollectionsGeneric.App.dll
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.pdb
+D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.App\obj\Debug\net5.0\CustomCollectionsGeneric.App.genruntimeconfig.cache
