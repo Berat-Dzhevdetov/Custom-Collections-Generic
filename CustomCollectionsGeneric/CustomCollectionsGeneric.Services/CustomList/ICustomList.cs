@@ -18,28 +18,17 @@ namespace CustomCollectionsGeneric.Services.CustomList
 
         bool Contains(T item);
 
-        void CopyTo(ICustomArray<T> array, int arrayIndex);
-        void CopyTo(ICustomArray<T> array, int arrayIndex, int count);
-
-        void CopyTo(ICustomArray<T> array);
-
         bool Exists(Func<T, bool> match);
 
         T Find(Func<T, bool> predicate);
-
         CustomList<T> FindAll(Func<T, bool> predicate);
-
-        int FindIndex(int startIndex, int count, Func<T, bool> predicate);
-
-        int FindIndex(Func<T, bool> match);
-
         bool Remove(T item);
         bool RemoveAll(T item);
         void RemoveAt(int index);
         void Reverse();
         void Sort();
         void SortDescending();
-        CustomArray<T> ToArray();
+        ICustomArray<T> ToArray();
         int LastIndexOf(T item);
         int IndexOf(T item);
         void Insert(int index,T item);

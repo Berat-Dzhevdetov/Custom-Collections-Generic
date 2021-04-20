@@ -1,5 +1,6 @@
 ﻿using CustomCollectionsGeneric.Services.CustomArray;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,7 +10,7 @@ using static CustomCollectionsGeneric.Services.Message;
 
 namespace CustomCollectionsGeneric.Services.CustomList
 {
-    public class CustomList<T> : ICustomList<T>
+    public class CustomList<T> : ICustomList<T>, IEnumerable<T>
     {
         private const int defaultScale = 2;
         private const int defaultCapacity = 2;
@@ -18,7 +19,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         public int Capacity => array.Length;
         private bool isReadOnly;
         private T defaultValue = default(T);
-
+        private int currentIndex = 0;
         public CustomList()
         {
             this.array = new CustomArray<T>(defaultCapacity);
@@ -31,13 +32,26 @@ namespace CustomCollectionsGeneric.Services.CustomList
             this.AddRange(collection);
         }
 
+        public T this[int index]
+        {
+            get
+            {
+                IsIndexValid(index);
+                return array[index];
+            }
+            set
+            {
+                IsIndexValid(index);
+                if (isReadOnly)
+                    throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+                this.Insert(index, value);
+            }
+        }
 
         public void Add(T item)
         {
             if (Count >= Capacity)
-            {
                 array.Resize(Capacity * defaultScale);
-            }
             array[Count] = item;
             Count++;
         }
@@ -71,19 +85,6 @@ namespace CustomCollectionsGeneric.Services.CustomList
             return false;
         }
 
-        public void CopyTo(ICustomArray<T> array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
-        public void CopyTo(ICustomArray<T> array, int arrayIndex, int count)
-        {
-            throw new NotImplementedException();
-        }
-        public void CopyTo(ICustomArray<T> array)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Exists(Func<T, bool> predicate)
         {
             return array.Exists(predicate);
@@ -107,35 +108,43 @@ namespace CustomCollectionsGeneric.Services.CustomList
             return newlyArray;
         }
 
-        public int FindIndex(int startIndex, int count, Func<T, bool> match)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int FindIndex(Func<T, bool> match)
-        {
-            throw new NotImplementedException();
-        }
-
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            if (!Contains(item))
+                return -1;
+            for (int i = 0; i < Count; i++)
+                if (item.Equals(array[i]))
+                    return i;
+            return -1;
         }
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            IsReadOnly();
+            IsIndexValid(index);
+            Count++;
+            if (Count >= Capacity)
+                array.Resize(Capacity * defaultScale);
+            for (int i = Count - 2; i >= index; i--)
+            {
+                array[i + 1] = array[i];
+            }
+            array[index] = item;
         }
 
         public int LastIndexOf(T item)
         {
-            throw new NotImplementedException();
+            if (!Contains(item))
+                return -1;
+            for (int i = Count - 1; i >= 0; i--)
+                if (item.Equals(array[i]))
+                    return i;
+            return -1;
         }
 
         public bool Remove(T item)
         {
             IsReadOnly();
-
             if (!Contains(item))
                 return false;
             for (int i = 0; i < Count; i++)
@@ -143,9 +152,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
                 if (array[i].Equals(item))
                 {
                     if (IsLastElement(i))
-                    {
                         array[i] = defaultValue;
-                    }
                     else
                     {
                         for (int j = i; j < Count; j++)
@@ -155,15 +162,12 @@ namespace CustomCollectionsGeneric.Services.CustomList
                                 array[j] = defaultValue;
                                 break;
                             }
-
                             array[j] = array[j + 1];
                         }
                     }
                     Count--;
                     if (Capacity / 2 == Count && Count > 2)
-                    {
                         array.Resize(Capacity / 2);
-                    }
                     return true;
                 }
             }
@@ -172,24 +176,16 @@ namespace CustomCollectionsGeneric.Services.CustomList
 
         public bool RemoveAll(T item)
         {
-            int tempCount = Count;
-            while (Contains(item))
-            {
-                Remove(item);
-            }
-
-            if (tempCount == Count)
-                return false;
-            else
-                return true;
+            var didReturnSomething = false;
+            while (Remove(item))
+                didReturnSomething = true;
+            return didReturnSomething;
         }
 
         public void RemoveAt(int index)
         {
             IsReadOnly();
-
             IsIndexValid(index);
-
             if (IsLastElement(index))
             {
                 array[index] = defaultValue;
@@ -217,7 +213,6 @@ namespace CustomCollectionsGeneric.Services.CustomList
         public void Reverse()
         {
             IsReadOnly();
-
             if (!Any())
                 return;
             array.Reverse();
@@ -226,7 +221,6 @@ namespace CustomCollectionsGeneric.Services.CustomList
         public void Sort()
         {
             IsReadOnly();
-
             if (!Any())
                 return;
             CustomArray<T> a = new CustomArray<T>(Count);
@@ -241,22 +235,20 @@ namespace CustomCollectionsGeneric.Services.CustomList
         public void SortDescending()
         {
             IsReadOnly();
-
             if (!Any())
                 return;
             Sort();
             array.Reverse();
         }
 
-        public CustomArray<T> ToArray()
+        public ICustomArray<T> ToArray()
         {
             var newlyArray = new CustomArray<T>(this.Count);
             for (int i = 0; i < Count; i++)
-            {
                 newlyArray[i] = array[i];
-            }
             return newlyArray;
         }
+
         public bool Any() => this.Count >= 1 ? true : false;
 
         public bool Any(Func<T, bool> predicate) => array.Any(predicate);
@@ -265,25 +257,51 @@ namespace CustomCollectionsGeneric.Services.CustomList
         {
             if (index == Count - 1)
                 return true;
-
             return false;
         }
         private void IsIndexValid(int index)
         {
             if (index < 0)
-            {
                 throw new IndexOutOfRangeException(lessThanZero);
-            }
-
             if (index >= Count)
-            {
                 throw new IndexOutOfRangeException(givenParametarWasOutOfRange);
-            }
         }
         private void IsReadOnly()
         {
             if (isReadOnly)
                 throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            Reset();
+            while (HasNext())
+            {
+                yield return this[currentIndex];
+                MoveNext();
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        private bool HasNext() =>
+             this.currentIndex < this.Count;
+
+        public void Reset()
+        {
+            currentIndex = 0;
+        }
+        private bool MoveNext()
+        {
+            if (this.HasNext())
+            {
+                this.currentIndex++;
+                return true;
+            }
+            return false;
         }
     }
 }

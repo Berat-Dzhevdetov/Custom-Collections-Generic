@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomCollectionsGeneric.Services.CustomList;
+using System;
 using System.Collections.ObjectModel;
 
 namespace CustomCollectionsGeneric.Services.CustomArray
@@ -28,5 +29,6 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         void SortDescending();
         bool Any();
         bool Any(Func<T, bool> predicate);
+        ICustomList<T> ToList();
     }
 }

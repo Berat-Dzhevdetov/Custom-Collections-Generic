@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomCollectionsGeneric.Services.CustomList;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -391,5 +392,18 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
         /// <returns></returns>
         public bool Any(Func<T, bool> predicate) => array.Any(predicate);
+        /// <summary>
+        /// Make your array as list
+        /// </summary>
+        /// <returns>Returns your array as list</returns>
+        public ICustomList<T> ToList()
+        {
+            var list = new CustomList<T>();
+            foreach (var item in array)
+            {
+                list.Add(item);
+            }
+            return list;
+        }
     }
 }

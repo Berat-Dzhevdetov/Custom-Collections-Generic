@@ -1,6 +1,7 @@
 ﻿using CustomCollectionsGeneric.Services.CustomArray;
 using CustomCollectionsGeneric.Services.CustomList;
 using System;
+using System.Collections.Generic;
 
 namespace CustomCollectionsGeneric.App
 {
@@ -9,18 +10,13 @@ namespace CustomCollectionsGeneric.App
         static void Main(string[] args)
         {
 
-            var array = new CustomArray<int>(5);
+            var array = new CustomArray<int>(4);
             array[0] = 10;
-            array[1] = 50;
+            array[1] = 20;
             array[2] = 40;
-            array[3] = 10;
-            array[4] = 10;
+            array[3] = 50;
             CustomList<int> list = new CustomList<int>(array);
-            //bool a = list.Remove(10);
-            //bool a1 = list.Remove(10);
-            //bool a2 = list.Remove(40);
-             list.RemoveAt(1);
-            ;
+            list.Insert(2, 30);
         }
     }
 }
