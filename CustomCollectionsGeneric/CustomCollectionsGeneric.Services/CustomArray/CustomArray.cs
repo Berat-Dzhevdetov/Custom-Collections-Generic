@@ -396,7 +396,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// Make your array as list
         /// </summary>
         /// <returns>Returns your array as list</returns>
-        public ICustomList<T> ToList()
+        public CustomList<T> ToList()
         {
             var list = new CustomList<T>();
             foreach (var item in array)

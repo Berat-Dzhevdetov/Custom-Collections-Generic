@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static CustomCollectionsGeneric.Services.Message;
 using System;
 using System.Text;
+using CustomCollectionsGeneric.Services.CustomList;
 
 namespace CustomCollectionsGeneric.Tests
 {
@@ -519,6 +520,21 @@ namespace CustomCollectionsGeneric.Tests
             var actualResult = array.Any(x => x == 580);
             //Assert
             Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void ToListShouldReturnListWithValues()
+        {
+            //Arange
+            var expectedType = "CustomList`1";
+            var expectedValue = 10;
+            var expectedCount = 5;
+            //Act
+            var actualType = array.ToList().GetType().Name;
+            var list = array.ToList();
+            //Assert
+            Assert.AreEqual(expectedType, actualType);
+            Assert.AreEqual(expectedValue, array[0]);
+            Assert.AreEqual(expectedCount, list.Count);
         }
     }
 }

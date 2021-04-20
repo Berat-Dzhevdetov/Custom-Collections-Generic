@@ -239,7 +239,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
             array.Reverse();
         }
 
-        public ICustomArray<T> ToArray()
+        public CustomArray<T> ToArray()
         {
             var newlyArray = new CustomArray<T>(this.Count);
             for (int i = 0; i < Count; i++)

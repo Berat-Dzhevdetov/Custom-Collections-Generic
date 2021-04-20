@@ -28,7 +28,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         void Reverse();
         void Sort();
         void SortDescending();
-        ICustomArray<T> ToArray();
+        CustomArray<T> ToArray();
         int LastIndexOf(T item);
         int IndexOf(T item);
         void Insert(int index,T item);

@@ -29,6 +29,6 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         void SortDescending();
         bool Any();
         bool Any(Func<T, bool> predicate);
-        ICustomList<T> ToList();
+        CustomList<T> ToList();
     }
 }
