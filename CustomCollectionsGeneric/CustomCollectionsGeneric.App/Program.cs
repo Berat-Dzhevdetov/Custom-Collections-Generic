@@ -17,6 +17,7 @@ namespace CustomCollectionsGeneric.App
             array[3] = 50;
             CustomList<int> list = new CustomList<int>(array);
             list.Insert(2, 30);
+
         }
     }
 }
