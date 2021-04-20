@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomCollectionsGeneric.Services.CustomArray;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,25 +11,39 @@ namespace CustomCollectionsGeneric.Services.CustomList
     public interface ICustomList<T>
     {
         void Add(T item);
-        public void AddRange(IEnumerable<T> collection);
+        void AddRange(ICustomArray<T> collection);
+        ReadOnlyCollection<T> AsReadOnly();
 
-        public ReadOnlyCollection<T> AsReadOnly();
+        void Clear();
 
-        public void Clear();
+        bool Contains(T item);
 
-        public bool Contains(T item);
-        public void CopyTo(T[] array, int arrayIndex);
+        void CopyTo(ICustomArray<T> array, int arrayIndex);
+        void CopyTo(ICustomArray<T> array, int arrayIndex, int count);
 
-        public void CopyTo(T[] array);
+        void CopyTo(ICustomArray<T> array);
 
-        public bool Exists(Predicate<T> match);
+        bool Exists(Func<T, bool> match);
 
-        public T? Find(Predicate<T> match);
+        T Find(Func<T, bool> predicate);
 
-        public CustomList<T> FindAll(Predicate<T> match);
+        CustomList<T> FindAll(Func<T, bool> predicate);
 
-        public int FindIndex(int startIndex, int count, Predicate<T> match);
+        int FindIndex(int startIndex, int count, Func<T, bool> predicate);
 
-        public int FindIndex(Predicate<T> match);
+        int FindIndex(Func<T, bool> match);
+
+        bool Remove(T item);
+        bool RemoveAll(T item);
+        void RemoveAt(int index);
+        void Reverse();
+        void Sort();
+        void SortDescending();
+        CustomArray<T> ToArray();
+        int LastIndexOf(T item);
+        int IndexOf(T item);
+        void Insert(int index,T item);
+        bool Any();
+        bool Any(Func<T, bool> predicate);
     }
 }

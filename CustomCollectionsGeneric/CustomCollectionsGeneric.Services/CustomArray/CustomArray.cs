@@ -383,7 +383,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// Will check if there is element inside the array.
         /// </summary>
         /// <returns>True if there is a element;otherwise false.</returns>
-        public bool Any() => Length >= 1 ? true : false;
+        public bool Any() => this.Length >= 1 ? true : false;
 
         /// <summary>
         /// Search if there is any element with given condition.

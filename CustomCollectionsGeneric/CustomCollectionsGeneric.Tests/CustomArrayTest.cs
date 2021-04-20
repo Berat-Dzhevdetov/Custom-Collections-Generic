@@ -499,7 +499,6 @@ namespace CustomCollectionsGeneric.Tests
             var actualResult = array.Any();
             //Assert
             Assert.AreEqual(expectedResult, actualResult);
-
         }
         [TestMethod]
         public void AnyShouldReturnTrueIfThereIsSomethingInTheArrayThatMeetTheGivenConditions()
