@@ -8,28 +8,20 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Bero\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Veselin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\Bero\\source\\repos\\Berat-Dzhevdetov\\Custom-Collections-Generic\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomCollectionsGeneric.Services.csproj",
+      "projectUniqueName": "D:\\C#\\5.Mega Advanced\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomCollectionsGeneric.Services.csproj",
       "projectName": "CustomCollectionsGeneric.Services",
-      "projectPath": "D:\\Users\\Bero\\source\\repos\\Berat-Dzhevdetov\\Custom-Collections-Generic\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomCollectionsGeneric.Services.csproj",
-      "packagesPath": "C:\\Users\\Bero\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\Bero\\source\\repos\\Berat-Dzhevdetov\\Custom-Collections-Generic\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\obj\\",
+      "projectPath": "D:\\C#\\5.Mega Advanced\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomCollectionsGeneric.Services.csproj",
+      "packagesPath": "C:\\Users\\Veselin\\.nuget\\packages\\",
+      "outputPath": "D:\\C#\\5.Mega Advanced\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Bero\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Veselin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -68,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
