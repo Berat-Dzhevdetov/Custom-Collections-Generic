@@ -17,6 +17,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         private CustomArray<T> array;
         public int Capacity => array.Length;
         private bool isReadOnly;
+        private T defaultValue = default(T);
 
         public CustomList()
         {
@@ -90,7 +91,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
 
         public T Find(Func<T, bool> predicate)
         {
-           return array.Find(predicate);
+            return array.Find(predicate);
         }
 
         public CustomList<T> FindAll(Func<T, bool> predicate)
@@ -133,17 +134,30 @@ namespace CustomCollectionsGeneric.Services.CustomList
 
         public bool Remove(T item)
         {
-            if (isReadOnly)
-                throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+            IsReadOnly();
+
             if (!Contains(item))
                 return false;
             for (int i = 0; i < Count; i++)
             {
                 if (array[i].Equals(item))
                 {
-                    for (int j = i; j < Count; j++)
+                    if (IsLastElement(i))
                     {
-                        array[j] = array[j + 1]; 
+                        array[i] = defaultValue;
+                    }
+                    else
+                    {
+                        for (int j = i; j < Count; j++)
+                        {
+                            if (IsLastElement(j))
+                            {
+                                array[j] = defaultValue;
+                                break;
+                            }
+
+                            array[j] = array[j + 1];
+                        }
                     }
                     Count--;
                     if (Capacity / 2 == Count && Count > 2)
@@ -158,18 +172,52 @@ namespace CustomCollectionsGeneric.Services.CustomList
 
         public bool RemoveAll(T item)
         {
-            throw new NotImplementedException();
+            int tempCount = Count;
+            while (Contains(item))
+            {
+                Remove(item);
+            }
+
+            if (tempCount == Count)
+                return false;
+            else
+                return true;
         }
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            IsReadOnly();
+
+            IsIndexValid(index);
+
+            if (IsLastElement(index))
+            {
+                array[index] = defaultValue;
+            }
+            else
+            {
+                for (int j = index; j < Count; j++)
+                {
+                    if (IsLastElement(j))
+                    {
+                        array[j] = defaultValue;
+                        break;
+                    }
+
+                    array[j] = array[j + 1];
+                }
+            }
+            Count--;
+            if (Capacity / 2 == Count && Count > 2)
+            {
+                array.Resize(Capacity / 2);
+            }
         }
 
         public void Reverse()
         {
-            if (isReadOnly)
-                throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+            IsReadOnly();
+
             if (!Any())
                 return;
             array.Reverse();
@@ -177,8 +225,8 @@ namespace CustomCollectionsGeneric.Services.CustomList
 
         public void Sort()
         {
-            if (isReadOnly)
-                throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+            IsReadOnly();
+
             if (!Any())
                 return;
             CustomArray<T> a = new CustomArray<T>(Count);
@@ -192,8 +240,8 @@ namespace CustomCollectionsGeneric.Services.CustomList
 
         public void SortDescending()
         {
-            if (isReadOnly)
-                throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+            IsReadOnly();
+
             if (!Any())
                 return;
             Sort();
@@ -212,5 +260,30 @@ namespace CustomCollectionsGeneric.Services.CustomList
         public bool Any() => this.Count >= 1 ? true : false;
 
         public bool Any(Func<T, bool> predicate) => array.Any(predicate);
+
+        private bool IsLastElement(int index)
+        {
+            if (index == Count - 1)
+                return true;
+
+            return false;
+        }
+        private void IsIndexValid(int index)
+        {
+            if (index < 0)
+            {
+                throw new IndexOutOfRangeException(lessThanZero);
+            }
+
+            if (index >= Count)
+            {
+                throw new IndexOutOfRangeException(givenParametarWasOutOfRange);
+            }
+        }
+        private void IsReadOnly()
+        {
+            if (isReadOnly)
+                throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+        }
     }
 }
