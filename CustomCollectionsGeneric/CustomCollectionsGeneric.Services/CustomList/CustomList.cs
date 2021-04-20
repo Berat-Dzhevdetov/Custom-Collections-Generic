@@ -148,7 +148,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
                     Count--;
                     if (Capacity / 2 == Count && Count > 2)
                     {
-                        array.Resize(Capacity / 2);
+                        array.Resize(Capacity / 2 /2);
                     }
                     return true;
                 }
