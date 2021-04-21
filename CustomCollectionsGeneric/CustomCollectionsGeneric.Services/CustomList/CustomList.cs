@@ -107,13 +107,17 @@ namespace CustomCollectionsGeneric.Services.CustomList
         {
             return array.AsReadOnly();
         }
-
+        public void IsReadOnly(bool state)
+        {
+            isReadOnly = state;
+        }
         /// <summary>
         /// Remove the items from the list.
         /// </summary>
         public void Clear()
         {
             array = new CustomArray<T>(defaultCapacity);
+            Count = 0;
         }
         /// <summary>
         /// Checks for given item if it is in the CustomList<T>/>.

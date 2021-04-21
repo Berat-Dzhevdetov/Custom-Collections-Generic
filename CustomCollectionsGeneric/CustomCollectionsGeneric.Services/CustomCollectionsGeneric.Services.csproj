@@ -4,8 +4,4 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Users\Bero\source\repos\Berat-Dzhevdetov\Custom-Collections-Generic\CustomCollectionsGeneric\CustomCollectionsGeneric.Services\CustomCollectionsGeneric.Services.xml</DocumentationFile>
-  </PropertyGroup>
-
 </Project>
