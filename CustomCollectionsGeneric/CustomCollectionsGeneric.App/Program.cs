@@ -15,11 +15,14 @@ namespace CustomCollectionsGeneric.App
             array[1] = 20;
             array[2] = 40;
             array[3] = 50;
-            CustomList<int> list = new CustomList<int>(array);
+            CustomList<int> list = new CustomList<int>();
             list.Insert(2, 30);
             var a = array.ToList();
             var b =a.GetType().Name;
             ;
+            var list2 = new List<int>();
+            list2.Contains(1);
+            list.AsReadOnly();
         }
     }
 }

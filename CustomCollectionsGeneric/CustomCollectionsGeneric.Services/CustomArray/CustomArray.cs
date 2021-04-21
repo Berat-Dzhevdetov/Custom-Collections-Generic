@@ -259,10 +259,10 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             return newlyArray;
         }
         /// <summary>
-        /// Looks for item with given conditions; if not found will return default value of the variable.
+        /// Checks for item that meet a given condition.
         /// </summary>
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
-        /// <returns>Returns first foun element.</returns>
+        /// <returns>Returns first found element, if the item is not found will return default value of <code>T</code></returns>
         public T Find(Func<T, bool> predicate)
         {
             return array.FirstOrDefault(predicate);
@@ -271,7 +271,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// Search for an element that meet a given condition.
         /// </summary>
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
-        /// <returns>Returns true if one of all elements meet with the given condition;otherwise false.</returns>
+        /// <returns>Returns true if one of all elements meet with the given condition, otherwise false.</returns>
         public bool Exists(Func<T, bool> predicate)
         {
             if (!Any())
