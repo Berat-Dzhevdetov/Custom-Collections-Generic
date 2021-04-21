@@ -20,7 +20,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         public int Rank => 1;
 
         /// <summary>
-        /// Constructor that initialise a new instance of <typeparamref name="CustomArray"/> with given length.
+        /// Constructor that initialise a new instance of CustomArray with given length.
         /// </summary>
         /// <param name="length">How big to be the array.</param>
         public CustomArray(int length)
@@ -47,10 +47,10 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Takes an zero-based <paramref name="index"/> and <paramref name="item"/> to add. Removes last value on this index.
+        /// Takes an index and item to add. Removes last value on this index.
         /// </summary>
-        /// <param name="index">Zero-based <paramref name="index"/>.</param>
-        /// <param name="item"><paramref name="item"/> to add.</param>
+        /// <param name="index">Index.</param>
+        /// <param name="item">Item to add.</param>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
         /// <exception cref="IndexOutOfRangeException">The error can be thrown if the given index is less than zero or bigger than the length of the array.</exception>
         private void InsertAt(int index, T item)
@@ -64,8 +64,9 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Makes an given array to <typeparamref name="ReadOnlyCollection"/>.
+        /// Makes an given array to readonly array.
         /// </summary>
+        /// <param name="array">Array to make readonly<./param>
         /// <returns>Returns the array as readonly.</returns>
         /// <exception cref="ArgumentNullException">The error can be thrown if array is null.</exception>
         public ReadOnlyCollection<T> AsReadOnly()
@@ -75,7 +76,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Makes current array readonly or not. If <paramref name="true"/> the array cannot be changed after this only can be read.
+        /// Makes current array readonly or not. If true the array cannot be changed after this only can be read.
         /// </summary>
         /// <param name="isReadOnly">To be readonly or not.</param>
         public void IsReadOnly(bool isReadOnly)
@@ -84,10 +85,10 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Receives start <paramref name="index"/> and <paramref name="length"/>.
+        /// Receives index(startIndex) and length(including).
         /// </summary>
-        /// <param name="index">From <paramref name="index"/> to start.</param>
-        /// <param name="length">Count to continue.</param>
+        /// <param name="index">From index to start.</param>
+        /// <param name="length">How long from array you want.</param>
         /// <exception cref="IndexOutOfRangeException">The error can be thrown if the given index is less than zero or bigger than the length of the array.</exception>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
         public void Clear(int index, int length)
@@ -113,9 +114,10 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <summary>
         /// Clears the array from given index till the end.
         /// </summary>
-        /// <param name="index">From <paramref name="index"/> to start.</param>
+        /// <param name="index">From index to start.</param>
         /// <exception cref="IndexOutOfRangeException">The error can be thrown if the given index is less than zero or bigger than the length of the array.</exception>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+
         public void Clear(int index)
         {
             if (isReadOnly)
@@ -150,7 +152,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Clones the whole <typeparamref name="CustomArray"/> into new one.
+        /// Clones the whole array into new one.
         /// </summary>
         /// <returns>Newly array with filled values.</returns>
         public CustomArray<T> Clone()
@@ -211,10 +213,10 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Makes newly <typeparamref name="CustomArray"/> with default values.
+        /// Makes newly array with default values.
         /// </summary>
-        /// <param name="length">The <paramref name="length"/> of the array.</param>
-        /// <returns>Newly <typeparamref name="CustomArray"/>.</returns>
+        /// <param name="length">The length of the array.</param>
+        /// <returns>Newly array.</returns>
         public CustomArray<T> Empty(int length)
         {
 
@@ -224,9 +226,9 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Fills the whole array with given <paramref name="value"/>.
+        /// Fills the whole array with given value.
         /// </summary>
-        /// <param name="value"><paramref name="value"/> to fill with.</param>
+        /// <param name="value">Value to fill with.</param>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
         public void Fill(T value)
         {
@@ -240,10 +242,10 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             }
         }
         /// <summary>
-        /// Returns newly <typeparamref name="CustomArray"/> with elements that meet a given condition.
+        /// Returns newly array with elements that meet a given condition.
         /// </summary>
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
-        /// <returns>Newly <typeparamref name="CustomArray"/> with elements.</returns>
+        /// <returns>Newly array with elements.</returns>
         public CustomArray<T> FindAll(Func<T, bool> predicate)
         {
             if (!Any())
@@ -260,7 +262,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// Checks for item that meet a given condition.
         /// </summary>
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
-        /// <returns>Returns first found element, if the item is not found will return default value of <typeparamref name="T"/></returns>
+        /// <returns>Returns first found element, if the item is not found will return default value of <code>T</code></returns>
         public T Find(Func<T, bool> predicate)
         {
             return array.FirstOrDefault(predicate);
@@ -269,7 +271,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// Search for an element that meet a given condition.
         /// </summary>
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
-        /// <returns>Returns <paramref name="true"/> if one of all elements meet with the given condition, otherwise <paramref name="false"/>.</returns>
+        /// <returns>Returns true if one of all elements meet with the given condition, otherwise false.</returns>
         public bool Exists(Func<T, bool> predicate)
         {
             if (!Any())
@@ -282,7 +284,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// Search for an element that meet a given condition.
         /// </summary>
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
-        /// <returns>Last found item. If no item was found will return default value of <typeparamref name="T"/>.</returns>
+        /// <returns>Last found item or first.</returns>
         public T FindLast(Func<T, bool> predicate)
         {
             return array.LastOrDefault(predicate);
@@ -290,8 +292,8 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <summary>
         /// Trying to look for given item.
         /// </summary>
-        /// <param name="item"><paramref name="item"/> to look for.</param>
-        /// <returns>If <paramref name="item"/> is found it will return his zero-based index, otherwise will return -1.</returns>
+        /// <param name="item">Item to look for.</param>
+        /// <returns>If item is found it will return his index; otherwise will return -1.</returns>
         public int IndexOf(T item)
         {
             if (!Any())
@@ -308,8 +310,8 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <summary>
         /// Trying to look for given item reversed.
         /// </summary>
-        /// <param name="item"><paramref name="item"/> to look for.</param>
-        /// <returns>If <paramref name="item"/> is found it will return his zero-based index, otherwise will return -1.</returns>
+        /// <param name="item">Item to look for.</param>
+        /// <returns>If item is found it will return his index; otherwise will return -1 or if array is empty.</returns>
         public int LastIndexOf(T item)
         {
             if (!Any())
@@ -325,9 +327,9 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         }
 
         /// <summary>
-        /// Makes new <typeparamref name="CustomArray"/> with the given length and copies values.
+        /// Makes new array with the given length and copies values.
         /// </summary>
-        /// <param name="newLength"><paramref name="New length"/> of new array.</param>
+        /// <param name="newLength">Length of new array.</param>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
         public void Resize(int newLength)
         {
@@ -336,7 +338,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             this.array = Clone(newLength);
         }
         /// <summary>
-        /// Make the array reversed.
+        /// Make the array reverse. If the array is empty will do nothing.
         /// </summary>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
         public void Reverse()
@@ -354,7 +356,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             this.array = newArray;
         }
         /// <summary>
-        /// Sorts the <typeparamref name="CustomArray"/> in ascending order.
+        /// Sorts the array in ascending order. If the array is empty will do nothing .
         /// </summary>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
         public void Sort()
@@ -366,7 +368,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
             this.array = array.OrderBy(x => x).ToArray();
         }
         /// <summary>
-        /// Sorts the <typeparamref name="CustomArray"/> in descending order.
+        /// Sorts the array in descending order. If the array is empty will do nothing.
         /// </summary>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
         public void SortDescending()
@@ -381,19 +383,19 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         /// <summary>
         /// Will check if there is element inside the array.
         /// </summary>
-        /// <returns><paramref name="true"/> if there is one or more element, otherwise <paramref name="false"/>.</returns>
+        /// <returns>True if there is a element;otherwise false.</returns>
         public bool Any() => this.Length >= 1 ? true : false;
 
         /// <summary>
         /// Search if there is any element with given condition.
         /// </summary>
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
-        /// <returns><paramref name="true"/> if there is element which meet the given condition, otherwise <paramref name="false"/>.</returns>
+        /// <returns></returns>
         public bool Any(Func<T, bool> predicate) => array.Any(predicate);
         /// <summary>
-        /// Make <typeparamref name="CustomArray"/> as <typeparamref name="CustomList"/>.
+        /// Make your array as list
         /// </summary>
-        /// <returns>Returns <typeparamref name="CustomArray"/> as <typeparamref name="CustomList"/>.</returns>
+        /// <returns>Returns your array as list</returns>
         public CustomList<T> ToList()
         {
             var list = new CustomList<T>();
