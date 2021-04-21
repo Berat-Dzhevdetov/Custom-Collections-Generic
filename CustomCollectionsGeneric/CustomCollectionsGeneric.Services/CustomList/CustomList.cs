@@ -18,17 +18,35 @@ namespace CustomCollectionsGeneric.Services.CustomList
         private bool isReadOnly;
         private T defaultValue = default(T);
         private int currentIndex = 0;
+
+        /// <summary>
+        /// Initialize new List<T> with default values
+        /// </summary>
         public CustomList()
         {
             this.array = new CustomArray<T>(defaultCapacity);
             isReadOnly = false;
         }
 
+        /// <summary>
+        /// Initialize new List<T> and add values from array to the List
+        /// </summary>
+        /// <param name="collection">Values to add as an array</param>
         public CustomList(ICustomArray<T> collection)
             : this()
         {
             this.AddRange(collection);
         }
+        /// <summary>
+        /// Initialize new List<T> and add values from List to the new List
+        /// </summary>
+        /// <param name="collection">Values to add as a List</param>
+        public CustomList(ICustomList<T> collection)
+            : this()
+        {
+            this.AddRange(collection);
+        }
+
 
         public T this[int index]
         {
@@ -40,12 +58,15 @@ namespace CustomCollectionsGeneric.Services.CustomList
             set
             {
                 IsIndexValid(index);
-                if (isReadOnly)
-                    throw new FieldAccessException(cannotAccessWhileArrayIsReadOnly);
+                IsReadOnly();
                 this.Insert(index, value);
             }
         }
 
+        /// <summary>
+        /// Receives an element and adds it to the end of the List
+        /// </summary>
+        /// <param name="item">Element to add</param>
         public void Add(T item)
         {
             if (Count >= Capacity)
@@ -53,6 +74,10 @@ namespace CustomCollectionsGeneric.Services.CustomList
             array[Count] = item;
             Count++;
         }
+        /// <summary>
+        /// Gets an array and adds the values ​​of the array to the list
+        /// </summary>
+        /// <param name="collection">Аn array from which it takes values</param>
         public void AddRange(ICustomArray<T> collection)
         {
             foreach (var item in (CustomArray<T>)collection)
@@ -60,12 +85,30 @@ namespace CustomCollectionsGeneric.Services.CustomList
                 Add(item);
             }
         }
+        /// <summary>
+        /// Gets an List and adds the values ​​of the List to the list
+        /// </summary>
+        /// <param name="collection">Аn List from which it takes values</param>
+        public void AddRange(ICustomList<T> collection)
+        {
+            foreach (var item in (CustomList<T>)collection)
+            {
+                Add(item);
+            }
+        }
 
+        /// <summary>
+        /// Makes the List as a ReadOnlyCollection
+        /// </summary>
+        /// <returns>List its values ​​as ReadOnlyCollection</returns>
         public ReadOnlyCollection<T> AsReadOnly()
         {
             return array.AsReadOnly();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Clear()
         {
             array = new CustomArray<T>(defaultCapacity);

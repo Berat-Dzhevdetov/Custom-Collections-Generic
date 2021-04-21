@@ -12,6 +12,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
     {
         void Add(T item);
         void AddRange(ICustomArray<T> collection);
+        void AddRange(ICustomList<T> collection);
         ReadOnlyCollection<T> AsReadOnly();
 
         void Clear();
