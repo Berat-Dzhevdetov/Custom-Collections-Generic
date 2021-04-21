@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CustomCollectionsGeneric.Services</name>
+    </assembly>
+    <members>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.#ctor(System.Int32)">
+            <summary>
+            Constructor that initialise a new instance of <typeparamref name="CustomArray"/> with given length.
+            </summary>
+            <param name="length">How big to be the array.</param>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.InsertAt(System.Int32,`0)">
+            <summary>
+            Takes an index and item to add. Removes last value on this index.
+            </summary>
+            <param name="index">Zero-based <paramref name="index"/>.</param>
+            <param name="item"><paramref name="item"/> to add.</param>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+            <exception cref="T:System.IndexOutOfRangeException">The error can be thrown if the given index is less than zero or bigger than the length of the array.</exception>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.AsReadOnly" -->
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.IsReadOnly(System.Boolean)">
+            <summary>
+            Makes current array readonly or not. If true the array cannot be changed after this only can be read.
+            </summary>
+            <param name="isReadOnly">To be readonly or not.</param>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Clear(System.Int32,System.Int32)">
+            <summary>
+            Receives index(startIndex) and length(including).
+            </summary>
+            <param name="index">From index to start.</param>
+            <param name="length">How long from array you want.</param>
+            <exception cref="T:System.IndexOutOfRangeException">The error can be thrown if the given index is less than zero or bigger than the length of the array.</exception>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Clear(System.Int32)">
+            <summary>
+            Clears the array from given index till the end.
+            </summary>
+            <param name="index">From index to start.</param>
+            <exception cref="T:System.IndexOutOfRangeException">The error can be thrown if the given index is less than zero or bigger than the length of the array.</exception>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Clear">
+            <summary>
+            Clears the whole array.
+            </summary>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Clone">
+            <summary>
+            Clones the whole array into new one.
+            </summary>
+            <returns>Newly array with filled values.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Empty(System.Int32)">
+            <summary>
+            Makes newly array with default values.
+            </summary>
+            <param name="length">The length of the array.</param>
+            <returns>Newly array.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Fill(`0)">
+            <summary>
+            Fills the whole array with given value.
+            </summary>
+            <param name="value">Value to fill with.</param>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.FindAll(System.Func{`0,System.Boolean})">
+            <summary>
+            Returns newly array with elements that meet a given condition.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns>Newly array with elements.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Find(System.Func{`0,System.Boolean})">
+            <summary>
+            Checks for item that meet a given condition.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns>Returns first found element, if the item is not found will return default value of <code>T</code></returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Exists(System.Func{`0,System.Boolean})">
+            <summary>
+            Search for an element that meet a given condition.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns>Returns true if one of all elements meet with the given condition, otherwise false.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.FindLast(System.Func{`0,System.Boolean})">
+            <summary>
+            Search for an element that meet a given condition.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns>Last found item or first.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.IndexOf(`0)">
+            <summary>
+            Trying to look for given item.
+            </summary>
+            <param name="item">Item to look for.</param>
+            <returns>If item is found it will return his index; otherwise will return -1.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.LastIndexOf(`0)">
+            <summary>
+            Trying to look for given item reversed.
+            </summary>
+            <param name="item">Item to look for.</param>
+            <returns>If item is found it will return his index; otherwise will return -1 or if array is empty.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Resize(System.Int32)">
+            <summary>
+            Makes new array with the given length and copies values.
+            </summary>
+            <param name="newLength">Length of new array.</param>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Reverse">
+            <summary>
+            Make the array reverse. If the array is empty will do nothing.
+            </summary>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Sort">
+            <summary>
+            Sorts the array in ascending order. If the array is empty will do nothing .
+            </summary>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.SortDescending">
+            <summary>
+            Sorts the array in descending order. If the array is empty will do nothing.
+            </summary>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Any">
+            <summary>
+            Will check if there is element inside the array.
+            </summary>
+            <returns>True if there is a element;otherwise false.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.Any(System.Func{`0,System.Boolean})">
+            <summary>
+            Search if there is any element with given condition.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomArray.CustomArray`1.ToList">
+            <summary>
+            Make your array as list
+            </summary>
+            <returns>Returns your array as list</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.#ctor">
+            <summary>
+            Initialize new <typeparamref name="CustomList"/> with default values.
+            </summary>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.#ctor(CustomCollectionsGeneric.Services.CustomArray.ICustomArray{`0})">
+            <summary>
+            Initialize new <typeparamref name="CustomArray"/> and add values from array to the List.
+            </summary>
+            <param name="collection">Values to add as an array.</param>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.#ctor(CustomCollectionsGeneric.Services.CustomList.ICustomList{`0})">
+            <summary>
+            Initialize new <typeparamref name="CustomList"/> and add values from List to the new List.
+            </summary>
+            <param name="collection">Values to add as a List.</param>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Add(`0)">
+            <summary>
+            Receives an <typeparamref name="Item"/> and adds it to the end of the <typeparamref name="CustomList"/>.
+            </summary>
+            <param name="item"><typeparamref name="Item"/> to add.</param>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.AddRange(CustomCollectionsGeneric.Services.CustomArray.ICustomArray{`0})">
+            <summary>
+            Takes an array and adds the values ​​of the array to the list.
+            </summary>
+            <param name="collection">Аn array from which it takes values.</param>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.AddRange(CustomCollectionsGeneric.Services.CustomList.ICustomList{`0})">
+            <summary>
+            Gets an List and adds the values ​​of the List to the list.
+            </summary>
+            <param name="collection">Аn List from which it takes values.</param>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.AsReadOnly">
+            <summary>
+            Makes the List as a ReadOnlyCollection.
+            </summary>
+            <returns>List its values ​​as <typeparamref name="ReadOnlyCollection"/> of type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Clear">
+            <summary>
+            Remove the items from the list.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Contains(`0)" -->
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Exists(System.Func{`0,System.Boolean})">
+            <summary>
+            Checks for item that meet a given condition.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns><paramref name="true"/> if <paramref name="item"/> was found, otherwise <paramref name="false"/>.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Find(System.Func{`0,System.Boolean})">
+            <summary>
+            Checks for item that meet a given condition.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns>Returns first found item, if the item is not found will return default value of <typeparamref name="T"/></returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.FindAll(System.Func{`0,System.Boolean})">
+            <summary>
+            Checks for item that meet a given condition.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns><paramref name="CustomList"/> with elemets that meet the given condition.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.IndexOf(`0)">
+            <summary>
+            Receives an <paramref name="item"/> and search for it in the array.
+            </summary>
+            <param name="item"></param>
+            <returns>If the <paramref name="item"/> was found will return his zero-based index, otherwise will return -1.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Insert(System.Int32,`0)">
+            <summary>
+            Receives <paramref name="index"/> and <typeparamref name="T"/> <paramref name="item"/> and insert it on the given index
+            </summary>
+            <param name="index">Zero-based index to insert item in</param>
+            <param name="item">Item to insert</param>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.LastIndexOf(`0)">
+            <summary>
+            Receives <typeparamref name="T"/> <paramref name="item"/> and looking for it in the List
+            </summary>
+            <param name="item"></param>
+            <returns>Returns zero-based index </returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Remove(`0)">
+            <summary>
+            If the List contains the given <paramref name="item"/> it removes it.
+            </summary>
+            <param name="item"><paramref name="item"/> to remove</param>
+            <returns><paramref name="true"/> if item was removed, otherwise will return <paramref name="false"/>.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.RemoveAll(`0)">
+            <summary>
+            If the List contains the given <paramref name="item"/> one or more times it will remove all of them.
+            </summary>
+            <param name="item"><paramref name="item"/> to remove</param>
+            <returns><paramref name="true"/> if the item was removed, otherwise <paramref name="false"/>.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.RemoveAt(System.Int32)">
+            <summary>
+            Will remove the item on zero-based given index.
+            </summary>
+            <param name="index">Zero-based index to remove at.</param>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Reverse">
+            <summary>
+            Reverses the <typeparamref name="CustomList"/>
+            </summary>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Sort">
+            <summary>
+            Sort the <typeparamref name="CustomList"/> ascending.
+            </summary>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.SortDescending">
+            <summary>
+            Sort the <typeparamref name="CustomList"/> descending.
+            </summary>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.ToArray">
+            <summary>
+            Makes a new <typeparamref name="CustomArray"/> with the values of <typeparamref name="CustomList"/>.
+            </summary>
+            <returns><typeparamref name="CustomArray"/> with the values.</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Any">
+            <summary>
+            Checks if there is anything in the <typeparamref name="CustomList"/>.
+            </summary>
+            <returns><paramref name="true"/> if there is something in the <typeparamref name="CustomList"/>, otherwise <paramref name="false"/></returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.Any(System.Func{`0,System.Boolean})">
+            <summary>
+            Checks if there is anything in the <typeparamref name="CustomList"/> that meets the given conditions.
+            </summary>
+            <param name="predicate">Defines the conditions of the element to search for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomList.CustomList`1.IsReadOnly">
+            <summary>
+            Checks if List is read only.
+            </summary>
+            <exception cref="T:System.FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomQueue.CustomQueue`1.Clear">
+            <summary>
+            Invonking this method will clear all the data in your Queue
+            </summary>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomQueue.CustomQueue`1.Contains(`0)">
+            <summary>
+            Checks if the given item is in the Queue
+            </summary>
+            <param name="item">Item to look for</param>
+            <returns>True if item is in the Queue; otherwise false</returns>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomQueue.CustomQueue`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies items from given index till the end and assign them to the given array.
+            Your array should be empty or it can delete some of your data
+            </summary>
+            <param name="array">Array to set items in</param>
+            <param name="arrayIndex">Start index from Queue</param>
+            <exception cref="T:System.ArgumentException">Exception can be thrown if the given array is null or the given index is bigger than the queue's count</exception>
+            <exception cref="T:System.IndexOutOfRangeException">Exception can be thrown if given index is less than zero</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomQueue.CustomQueue`1.Enqueue(`0)">
+            <summary>
+            Adds given item to the Queue
+            </summary>
+            <param name="item">Item to add</param>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomQueue.CustomQueue`1.Dequeue">
+            <summary>
+            Removes the first item of the Queue
+            </summary>
+            <returns>Removed item</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Exception can be thrown if the Queue is empty</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomQueue.CustomQueue`1.Peek">
+            <summary>
+            Looks the first item of the Queue
+            </summary>
+            <returns>First item of the Queue</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Exception can be thrown if the Queue is empty</exception>
+        </member>
+        <member name="M:CustomCollectionsGeneric.Services.CustomQueue.CustomQueue`1.ToArray">
+            <summary>
+            Make from queue to array
+            </summary>
+            <returns>New array of the queue</returns>
+        </member>
+    </members>
+</doc>
