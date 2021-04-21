@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CustomCollectionsGeneric",
+    "\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services",
+    "\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomArray",
+    "\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomList",
+    "\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Tests"
   ],
+  "SelectedNode": "\\CustomCollectionsGeneric\\CustomCollectionsGeneric.Services\\CustomList\\CustomList.cs",
   "PreviewInSolutionExplorer": false
 }

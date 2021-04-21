@@ -64,9 +64,9 @@ namespace CustomCollectionsGeneric.Services.CustomList
         }
 
         /// <summary>
-        /// Receives an element and adds it to the end of the List
+        /// Receives an element and adds it to the end of the List.
         /// </summary>
-        /// <param name="item">Element to add</param>
+        /// <param name="item">Element to add.</param>
         public void Add(T item)
         {
             if (Count >= Capacity)
@@ -75,9 +75,9 @@ namespace CustomCollectionsGeneric.Services.CustomList
             Count++;
         }
         /// <summary>
-        /// Gets an array and adds the values ​​of the array to the list
+        /// Gets an array and adds the values ​​of the array to the list.
         /// </summary>
-        /// <param name="collection">Аn array from which it takes values</param>
+        /// <param name="collection">Аn array from which it takes values.</param>
         public void AddRange(ICustomArray<T> collection)
         {
             foreach (var item in (CustomArray<T>)collection)
@@ -86,9 +86,9 @@ namespace CustomCollectionsGeneric.Services.CustomList
             }
         }
         /// <summary>
-        /// Gets an List and adds the values ​​of the List to the list
+        /// Gets an List and adds the values ​​of the List to the list.
         /// </summary>
-        /// <param name="collection">Аn List from which it takes values</param>
+        /// <param name="collection">Аn List from which it takes values.</param>
         public void AddRange(ICustomList<T> collection)
         {
             foreach (var item in (CustomList<T>)collection)
@@ -98,22 +98,21 @@ namespace CustomCollectionsGeneric.Services.CustomList
         }
 
         /// <summary>
-        /// Makes the List as a ReadOnlyCollection
+        /// Makes the List as a ReadOnlyCollection.
         /// </summary>
-        /// <returns>List its values ​​as ReadOnlyCollection</returns>
+        /// <returns>List its values ​​as ReadOnlyCollection.</returns>
         public ReadOnlyCollection<T> AsReadOnly()
         {
             return array.AsReadOnly();
         }
 
         /// <summary>
-        /// 
+        /// Remove the items from the list.
         /// </summary>
         public void Clear()
         {
             array = new CustomArray<T>(defaultCapacity);
         }
-
         public bool Contains(T item)
         {
             for (int i = 0; i < this.Count; i++)
