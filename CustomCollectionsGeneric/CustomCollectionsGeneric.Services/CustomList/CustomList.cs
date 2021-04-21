@@ -117,6 +117,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         public void Clear()
         {
             array = new CustomArray<T>(defaultCapacity);
+            Count = 0;
         }
         /// <summary>
         /// Checks for given item if it is in the CustomList<T>/>.

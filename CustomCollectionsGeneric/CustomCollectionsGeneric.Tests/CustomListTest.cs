@@ -75,5 +75,48 @@ namespace CustomCollectionsGeneric.Tests
             list.AddRange(testList);
             Assert.AreEqual(expextedResult, list.Count);
         }
+        [TestMethod]
+        public void CustomListAddRangeMethodShouldAddTheElementsWhenGivenArray()
+        {
+            var testArr = new CustomArray<int>(5);
+            testArr[0]=1;
+            testArr[1]=1;
+            testArr[2]=1;
+            testArr[3]=1;
+            testArr[4]=1;
+            var expextedResult = list.Count + testArr.Length;
+            list.AddRange(testArr);
+            Assert.AreEqual(expextedResult, list.Count);
+        }
+
+        [TestMethod]
+        public void ClearMethodShouldRemoveAllElements()
+        {
+            list.Clear();
+            Assert.AreEqual(0, list.Count);
+        }
+        [TestMethod]
+        [DataRow(true,3)]
+        [DataRow(false, 213213)]
+        public void ContainsMethodShouldFindElementsAndReturnTrueIfItsFind(bool expResult,int toBeFind)
+        {
+            Assert.AreEqual(expResult, list.Contains(toBeFind));
+        }
+        [TestMethod]
+        [DataRow(true, 4)]
+        [DataRow(false, 3434)]
+        //work with anonymous function
+        public void ExistMethodShouldFindElementsAndReturnTrueIfItsFind(bool expResult, int toBeFind)
+        {
+            Assert.AreEqual(expResult, list.Exists(x=>x==toBeFind));
+        }
+
+        [TestMethod]
+        [DataRow(4, 4)]
+        [DataRow(0, 3434)]
+        public void FindMethodShouldReturnTheValueThatFoundAndTheDeafaultValueIfNothinfFound(int expResult, int toBeFind)
+        {
+            Assert.AreEqual(expResult, list.Find(x => x == toBeFind));
+        }
     }
 }
