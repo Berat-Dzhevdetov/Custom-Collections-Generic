@@ -432,5 +432,26 @@ namespace CustomCollectionsGeneric.Services.CustomList
             }
             return false;
         }
+        /// <summary>
+        /// Copies the whole <typeparamref name="CustomList"/> into given <typeparamref name="CustomArray"/>. If there is data in the array it can be lost
+        /// </summary>
+        /// <param name="array">Array to set values</param>
+        public void CopyTo(out CustomArray<T> array)
+        {
+            array = new CustomArray<T>(Count);
+            array = this.array.Clone();
+        }
+        public void CopyTo(out CustomArray<T> array,int startIndex)
+        {
+            if (startIndex >= Count)
+                throw new ArgumentOutOfRangeException(givenParametarWasOutOfRange);
+            array = new CustomArray<T>(Count);
+            var result = new CustomArray<T>(Count - startIndex);
+            for (int i = startIndex; i < result.Length; i++)
+            {
+                result[i] = this.array[i];
+            }
+            array = result;
+        }
     }
 }
