@@ -15,6 +15,9 @@ namespace CustomCollectionsGeneric.App
             var array = queue.ToArray();
             //Assert
             var a =  array.GetType().Name;
+
+            var c = new CustomList<int>() { 0, 2, 3, 4, 5 };
+            c.Reverse();
             ;
         }
     }

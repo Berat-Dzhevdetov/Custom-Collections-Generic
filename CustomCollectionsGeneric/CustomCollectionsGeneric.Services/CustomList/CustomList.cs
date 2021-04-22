@@ -312,7 +312,13 @@ namespace CustomCollectionsGeneric.Services.CustomList
             IsReadOnly();
             if (!Any())
                 return;
-            array.Reverse();
+            var newArray = new CustomArray<T>(Capacity);
+            int counter = 0;
+            for (int i = this.Count - 1; i >= 0; i--, counter++)
+            {
+                newArray[counter] = array[i];
+            }
+            this.array = newArray;
         }
 
         /// <summary>

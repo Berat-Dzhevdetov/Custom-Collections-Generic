@@ -11,7 +11,5 @@ namespace CustomCollectionsGeneric.Services.CustomQueue
         T Dequeue();
         T Peek();
         CustomArray<T> ToArray();
-        bool TryDequeue(out T result);
-        bool TryPeek(out T result);
     }
 }

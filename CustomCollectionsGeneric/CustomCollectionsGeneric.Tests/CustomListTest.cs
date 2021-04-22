@@ -168,5 +168,74 @@ namespace CustomCollectionsGeneric.Tests
             var actualResult = list.LastIndexOf(item);
             Assert.AreEqual(expextedResult, actualResult);
         }
+
+        [TestMethod]
+        [DataRow(1, true)]
+        [DataRow(3, true)]
+        [DataRow(2, true)]
+        [DataRow(4, true)]
+        [DataRow(5, true)]
+        [DataRow(45, false)]
+        public void RemoveMethodShouldRemoveFirstItemThatMatchTheItem(int toRemove,bool expResult)
+        {
+            bool actualResult = list.Remove(toRemove);
+            Assert.AreEqual(expResult, actualResult);
+        }
+        [TestMethod]
+        [DataRow(4, true)]
+        [DataRow(5, true)]
+        [DataRow(45, false)]
+        public void RemoveAllMethodShouldRemoveAllItemThatMatchTheItem(int toRemove, bool expResult)
+        {
+            bool actualResult = list.RemoveAll(toRemove);
+            Assert.AreEqual(expResult, actualResult);
+        }
+
+        [TestMethod]
+        [DataRow(1)]
+        [DataRow(4)]
+        [DataRow(2)]
+        public void RemoveAtMethodShouldRemoveItemAtGivenIndex(int index)
+        {
+            var expResult = list.Count - 1;
+            list.RemoveAt(index);
+            Assert.AreEqual(expResult, list.Count);
+
+        }
+        [TestMethod]
+        [DataRow(-23)]
+        [DataRow(54)]
+        [DataRow(895687)]
+        public void RemoveAtMethodShouldThrowExeptionWhenGivenInvalidIndex(int index)
+        {
+            Assert.ThrowsException<IndexOutOfRangeException>(() => list.RemoveAt(index));
+        }
+
+        [TestMethod]
+        public void ReverseMethodShoulRevurseTheList()
+        {
+            var testList =new CustomList<int>();
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.Add(5);
+
+            testList.Reverse();
+
+            var listCounter = 0;
+            for (int i = list.Count-1; i >= 0; i--)
+            {
+                Assert.AreEqual(list[listCounter++], testList[i]);
+            }
+        }
+
+        //Sort,SortDescending Tests will be done soon due to bugs.
+
+       [TestMethod]
+       public void AnyMethodShoulFindAtLeastOneMatch()
+        {
+            Assert.AreEqual(true, list.Any(x=>x==1));
+        }
     }
 }
