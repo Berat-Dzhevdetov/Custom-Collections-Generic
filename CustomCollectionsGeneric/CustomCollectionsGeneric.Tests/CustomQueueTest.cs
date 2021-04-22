@@ -197,5 +197,59 @@ namespace CustomCollectionsGeneric.Tests
                 counter++;
             }
         }
+        [TestMethod]
+        public void TryPeekShouldReturnDefaultValueBecauseNoItems()
+        {
+            //Arange
+            var queue = new CustomQueue<string>();
+            string result;
+            //Act
+            var act = queue.TryPeek(out result);
+            //Assert
+            Assert.AreEqual(null, result);
+            Assert.AreEqual(false, act);
+        }
+        [TestMethod]
+        public void TryPeekShouldReturnFirstItem()
+        {
+            //Arange
+            var queue = new CustomQueue<string>();
+            string result;
+            queue.Enqueue("1");
+            queue.Enqueue("3");
+            queue.Enqueue("4");
+            //Act
+            var act = queue.TryPeek(out result);
+            //Assert
+            Assert.AreEqual("1", result);
+            Assert.AreEqual(true, act);
+        }
+        [TestMethod]
+        public void TryDequeueShouldReturnDefaultValueBecauseNoItems()
+        {
+            //Arange
+            var queue = new CustomQueue<string>();
+            string result;
+            //Act
+            var act = queue.TryDequeue(out result);
+            //Assert
+            Assert.AreEqual(null, result);
+            Assert.AreEqual(false, act);
+        }
+        [TestMethod]
+        public void TryDequeueShouldReturnFirstItem()
+        {
+            //Arange
+            var queue = new CustomQueue<string>();
+            string result;
+            queue.Enqueue("1");
+            queue.Enqueue("3");
+            queue.Enqueue("4");
+            //Act
+            var act = queue.TryDequeue(out result);
+            //Assert
+            Assert.AreEqual("1", result);
+            Assert.AreEqual(true, act);
+        }
     }
 }
