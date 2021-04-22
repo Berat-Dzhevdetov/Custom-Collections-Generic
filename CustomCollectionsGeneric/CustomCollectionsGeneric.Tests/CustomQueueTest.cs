@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomCollectionsGeneric.Services.CustomQueue;
 using System;
 using static CustomCollectionsGeneric.Services.Message;
+using CustomCollectionsGeneric.Services.CustomArray;
 
 namespace CustomCollectionsGeneric.Tests
 {
@@ -71,7 +72,7 @@ namespace CustomCollectionsGeneric.Tests
         {
             //Arange
             var queue = new CustomQueue<int>();
-            var array = new int[1];
+            var array = new CustomArray<int>(queue.Count);
             //Act
             queue.Enqueue(1);
             var ex = Assert.ThrowsException<IndexOutOfRangeException>(() => queue.CopyTo(array, -1));
@@ -83,7 +84,7 @@ namespace CustomCollectionsGeneric.Tests
         {
             //Arange
             var queue = new CustomQueue<int>();
-            var array = new int[1];
+            var array = new CustomArray<int>(queue.Count);
             //Act
             queue.Enqueue(1);
             var ex = Assert.ThrowsException<ArgumentException>(() => queue.CopyTo(array, 2));
@@ -158,7 +159,7 @@ namespace CustomCollectionsGeneric.Tests
             //Act
             var array = queue.ToArray();
             //Assert
-            Assert.AreEqual("Int32[]", array.GetType().Name);
+            Assert.AreEqual("CustomArray`1", array.GetType().Name);
         }
         [TestMethod]
         public void ToArrayShouldMakeQueueToArrayWithItems()
