@@ -118,5 +118,55 @@ namespace CustomCollectionsGeneric.Tests
         {
             Assert.AreEqual(expResult, list.Find(x => x == toBeFind));
         }
+
+        [TestMethod]
+        public void FindAllShouldReturnAllMatchedThingWhitTheGivenConditionAndIfNothingIsFoundReturnEmptyCollection()
+        {
+            list.Add(1);
+            var expextedResult = 2;
+            var actualResult = list.FindAll(x => x == 1);
+            Assert.AreEqual(expextedResult, actualResult.Count);
+
+            var expextedResultIfNotFoundAnything = 0;
+            actualResult = list.FindAll(x => x == 342);
+            Assert.AreEqual(expextedResultIfNotFoundAnything, actualResult.Count);
+        }
+
+        [TestMethod]
+        [DataRow(4, 5)]
+        [DataRow(-1, 3434)]
+        public void IndexOfMethodShoulReturnTheIndexOfGivenItemOrReturnMinusOneIfNotFound(int expResult,int searchedItem)
+        {
+            Assert.AreEqual(expResult, list.IndexOf(searchedItem));
+        }
+
+        [TestMethod]
+        [DataRow(34, 1)]
+        [DataRow(54, 4)]
+        [DataRow(5, 3)]
+        [DataRow(12, 2)]
+        public void InsertMethodShouldInsertItemAtTheGivenIndex(int insertedItem, int index)
+        {
+            list.Insert( index, insertedItem);
+            Assert.AreEqual(insertedItem, list[index]);
+        }
+
+        [TestMethod]
+        public void InsertMethodShouldThrowExeptionIfInvalidIndexOrIsReadOnlyCollection()
+        {
+            Assert.ThrowsException<IndexOutOfRangeException>(() => list.Insert(2134213,4));
+
+            list.IsReadOnly(true);
+            Assert.ThrowsException<FieldAccessException>(() => list.Add(5));
+        }
+
+        [TestMethod]
+        [DataRow(4,3)]
+        [DataRow(234,-1)]
+        public void LastIndexOfMethodReturnsTheFirstMatchedItemIndexWhitTheGivenItemAndIfNotFoundReturnMinusOne(int item,int expextedResult)
+        {
+            var actualResult = list.LastIndexOf(item);
+            Assert.AreEqual(expextedResult, actualResult);
+        }
     }
 }
