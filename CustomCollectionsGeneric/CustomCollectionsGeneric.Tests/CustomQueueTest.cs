@@ -178,5 +178,24 @@ namespace CustomCollectionsGeneric.Tests
             Assert.AreEqual(3, array[2]);
             Assert.AreEqual(4, array[3]);
         }
+        [TestMethod]
+        public void GetEnumerator()
+        {
+            //Arange
+            var queue = new CustomQueue<int>();
+            var expectedResult = new int[] { 2,1,3,4 };
+            int counter = 0;
+            //Act
+            queue.Enqueue(2);
+            queue.Enqueue(1);
+            queue.Enqueue(3);
+            queue.Enqueue(4);
+            //Assert
+            foreach (var item in queue)
+            {
+                Assert.AreEqual(expectedResult[counter], item);
+                counter++;
+            }
+        }
     }
 }

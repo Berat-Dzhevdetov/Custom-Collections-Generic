@@ -7,7 +7,7 @@ using static CustomCollectionsGeneric.Services.Message;
 
 namespace CustomCollectionsGeneric.Services.CustomQueue
 {
-    public class CustomQueue<T> : ICustomQueue<T> , IEnumerable<T>
+    public class CustomQueue<T> : ICustomQueue<T>, IEnumerable<T>
     {
         private CustomList<T> queue;
         public int Count => queue.Count;
@@ -78,7 +78,7 @@ namespace CustomCollectionsGeneric.Services.CustomQueue
         /// Removes the first item of the Queue
         /// </summary>
         /// <returns>Removed item</returns>
-        /// <exception cref="System.IndexOutOfRangeException">Exception can be thrown if the Queue is empty</exception>
+        /// <exception cref="System.InvalidOperationException">Exception can be thrown if the Queue is empty</exception>
         public T Dequeue()
         {
             if (queue.Count <= 0)
@@ -92,12 +92,52 @@ namespace CustomCollectionsGeneric.Services.CustomQueue
         /// Looks the first item of the Queue
         /// </summary>
         /// <returns>First item of the Queue</returns>
-        /// <exception cref="System.IndexOutOfRangeException">Exception can be thrown if the Queue is empty</exception>
+        /// <exception cref="System.InvalidOperationException">Exception can be thrown if the Queue is empty</exception>
         public T Peek()
         {
             if (queue.Count <= 0)
                 throw new InvalidOperationException(emptyQueue);
             return queue[0];
+        }
+
+        /// <summary>
+        /// Tries to dequeue. If dequeue was successfully will return <paramref name="true"/> and <typeparamref name="T"/> <paramref name="result"/> will
+        /// be equal to the element, otherwise will return <paramref name="false"/> and default value of <typeparamref name="T"/>
+        /// </summary>
+        /// <param name="result">Variable in which you want to save the result</param>
+        /// <returns><paramref name="true"/> if dequeue was successfully, otherwise <paramref name="false"/></returns>
+        public bool TryDequeue(out T result)
+        {
+            try
+            {
+                result = Dequeue();
+                return true;
+            }
+            catch (InvalidOperationException)
+            {
+                result = default(T);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Tries to peek. If peek was successfully will return <paramref name="true"/> and <typeparamref name="T"/> <paramref name="result"/> will
+        /// be equal to the element, otherwise will return <paramref name="false"/> and default value of <typeparamref name="T"/>
+        /// </summary>
+        /// <param name="result">Variable in which you want to save the result</param>
+        /// <returns><paramref name="true"/> if peek was successfully, otherwise <paramref name="false"/></returns>
+        public bool TryPeek(out T result)
+        {
+            try
+            {
+                result = Peek();
+                return true;
+            }
+            catch (InvalidOperationException)
+            {
+                result = default(T);
+                return false;
+            }
         }
 
         /// <summary>
