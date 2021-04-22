@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CustomCollectionsGeneric.Services.CustomArray;
 
 namespace CustomCollectionsGeneric.Services.CustomQueue
 {
@@ -10,10 +6,10 @@ namespace CustomCollectionsGeneric.Services.CustomQueue
     {
         void Clear();
         bool Contains(T item);
-        void CopyTo(T[] array, int arrayIndex);
+        void CopyTo(CustomArray<T> array, int arrayIndex);
         void Enqueue(T item);
         T Dequeue();
         T Peek();
-        T[] ToArray();
+        CustomArray<T> ToArray();
     }
 }

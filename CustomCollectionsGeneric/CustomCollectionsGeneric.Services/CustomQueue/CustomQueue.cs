@@ -1,25 +1,33 @@
-﻿using System;
+﻿using CustomCollectionsGeneric.Services.CustomArray;
+using CustomCollectionsGeneric.Services.CustomList;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using static CustomCollectionsGeneric.Services.Message;
 
 namespace CustomCollectionsGeneric.Services.CustomQueue
 {
-    public class CustomQueue<T> : ICustomQueue<T>
+    public class CustomQueue<T> : ICustomQueue<T> , IEnumerable<T>
     {
-        private List<T> queue;
+        private CustomList<T> queue;
         public int Count => queue.Count;
-
+        private int currentIndex;
 
         public CustomQueue()
         {
-            this.queue = new List<T>();
+            this.queue = new CustomList<T>();
+        }
+        public CustomQueue(CustomList<T> list)
+            : this()
+        {
+            queue.AddRange(list);
         }
         /// <summary>
         /// Invonking this method will clear all the data in your Queue
         /// </summary>
         public void Clear()
         {
-            this.queue = new List<T>();
+            this.queue = new CustomList<T>();
         }
 
         /// <summary>
@@ -38,7 +46,7 @@ namespace CustomCollectionsGeneric.Services.CustomQueue
         /// <param name="arrayIndex">Start index from Queue</param>
         /// <exception cref="System.ArgumentException">Exception can be thrown if the given array is null or the given index is bigger than the queue's count</exception>
         /// <exception cref="System.IndexOutOfRangeException">Exception can be thrown if given index is less than zero</exception>
-        public void CopyTo(T[] array, int arrayIndex)
+        public void CopyTo(CustomArray<T> array, int arrayIndex)
         {
             if (array == null)
                 throw new ArgumentException(givenArrayWasNull);
@@ -96,8 +104,43 @@ namespace CustomCollectionsGeneric.Services.CustomQueue
         /// Make from queue to array
         /// </summary>
         /// <returns>New array of the queue</returns>
-        public T[] ToArray() => queue.ToArray();
+        public CustomArray<T> ToArray() => queue.ToArray();
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            Reset();
+            while (HasNext())
+            {
+                yield return queue[currentIndex];
+                MoveNext();
+            }
+        }
 
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        private bool HasNext() =>
+             this.currentIndex < this.Count;
+
+        public void Reset()
+        {
+            currentIndex = 0;
+        }
+        private bool MoveNext()
+        {
+            if (this.HasNext())
+            {
+                this.currentIndex++;
+                return true;
+            }
+            return false;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)queue).GetEnumerator();
+        }
     }
 }
