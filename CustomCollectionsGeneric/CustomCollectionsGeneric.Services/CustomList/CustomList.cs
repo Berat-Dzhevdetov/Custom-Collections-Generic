@@ -8,7 +8,7 @@ using static CustomCollectionsGeneric.Services.Message;
 
 namespace CustomCollectionsGeneric.Services.CustomList
 {
-    public class CustomList<T> : ICustomList<T>, IEnumerable<T>
+    public class CustomList<T> : ICustomList<T>, IEnumerable<T>,ICustomCollection<T>
     {
         private const int defaultScale = 2;
         private const int defaultCapacity = 2;
@@ -112,7 +112,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
             isReadOnly = state;
         }
         /// <summary>
-        /// Remove the items from the list.
+        /// Remove the items from the <typeparamref name="CustomList"/>.
         /// </summary>
         public void Clear()
         {
@@ -120,7 +120,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
             Count = 0;
         }
         /// <summary>
-        /// Checks for given item if it is in the CustomList<T>/>.
+        /// Checks for given item if it is in the <typeparamref name="CustomList"/>.
         /// </summary>
         /// <param name="item"><paramref name="item"/> to find</param>
         /// <returns><paramref name="true"/> if <paramref name="item"/> was found,otherwise <paramref name="false"/>.</returns>
@@ -173,7 +173,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         }
 
         /// <summary>
-        /// Receives an <paramref name="item"/> and search for it in the array.
+        /// Receives an <paramref name="item"/> and search for it in the <typeparamref name="CustomList"/>.
         /// </summary>
         /// <param name="item"></param>
         /// <returns>If the <paramref name="item"/> was found will return his zero-based index, otherwise will return -1.</returns>
@@ -207,10 +207,10 @@ namespace CustomCollectionsGeneric.Services.CustomList
         }
 
         /// <summary>
-        /// Receives <typeparamref name="T"/> <paramref name="item"/> and looking for it in the List
+        /// Receives <typeparamref name="T"/> <paramref name="item"/> and looking for it in the <typeparamref name="CustomList"/>
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns>Returns zero-based index </returns>
+        /// <param name="item">Item to look for.</param>
+        /// <returns>Zero-based index if item was found, otherwise -1.</returns>
         public int LastIndexOf(T item)
         {
             if (!Contains(item))
@@ -222,7 +222,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         }
 
         /// <summary>
-        /// If the List contains the given <paramref name="item"/> it removes it.
+        /// If the <typeparamref name="CustomList"/> contains the given <paramref name="item"/> it removes it.
         /// </summary>
         /// <param name="item"><paramref name="item"/> to remove</param>
         /// <returns><paramref name="true"/> if item was removed, otherwise will return <paramref name="false"/>.</returns>
@@ -259,7 +259,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         }
 
         /// <summary>
-        /// If the List contains the given <paramref name="item"/> one or more times it will remove all of them.
+        /// If the <typeparamref name="CustomList"/> contains the given <paramref name="item"/> one or more times it will remove all of them.
         /// </summary>
         /// <param name="item"><paramref name="item"/> to remove</param>
         /// <returns><paramref name="true"/> if the item was removed, otherwise <paramref name="false"/>.</returns>
@@ -374,7 +374,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         /// Checks if there is anything in the <typeparamref name="CustomList"/> that meets the given conditions.
         /// </summary>
         /// <param name="predicate">Defines the conditions of the element to search for.</param>
-        /// <returns></returns>
+        /// <returns><paramref name="true"/> if item was found,otherwise <paramref name="false"/></returns>
         public bool Any(Func<T, bool> predicate) => array.Any(predicate);
 
 
@@ -441,9 +441,15 @@ namespace CustomCollectionsGeneric.Services.CustomList
             array = new CustomArray<T>(Count);
             array = this.CopyTo( array,0);
         }
+        /// <summary>
+        /// Copies the <typeparamref name="CustomList"/> into <typeparamref name="CustomArray"/> from given index.
+        /// </summary>
+        /// <param name="array">Array to fill with the values.</param>
+        /// <param name="startIndex">Zero-based index.</param>
+        /// <exception cref="ArgumentException">It can be thrown if given index was out of range.</exception>
         public void CopyTo(out CustomArray<T> array,int startIndex)
         {
-            if (startIndex >= Count)
+            if (startIndex >= Count || startIndex < 0)
                 throw new ArgumentOutOfRangeException(givenParametarWasOutOfRange);
             array = new CustomArray<T>(Count);
             var result = new CustomArray<T>(Count - startIndex);
