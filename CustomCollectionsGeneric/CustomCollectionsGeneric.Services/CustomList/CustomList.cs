@@ -440,7 +440,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         public void CopyTo(out CustomArray<T> array)
         {
             array = new CustomArray<T>(Count);
-            array = this.array.Clone();
+            CopyTo(out array,0);
         }
         /// <summary>
         /// Copies the <typeparamref name="CustomList"/> into <typeparamref name="CustomArray"/> from given index.

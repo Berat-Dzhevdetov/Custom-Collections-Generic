@@ -21,6 +21,10 @@ namespace CustomCollectionsGeneric.Services.CustomHashSet
         {
             AddRange(array);
         }
+        public CustomHashSet(ICustomList<T> list)
+        {
+            AddRange(list);
+        }
 
         /// <summary>
         /// Receives an <typeparamref name="Item"/> and adds it to the end of the <typeparamref name="CustomHastSet"/> only if there is no item like it.
@@ -53,7 +57,7 @@ namespace CustomCollectionsGeneric.Services.CustomHashSet
         {
             foreach (var item in (CustomList<T>)collection)
             {
-                list.Add(item);
+                Add(item);
             }
         }
         /// <summary>
@@ -119,18 +123,13 @@ namespace CustomCollectionsGeneric.Services.CustomHashSet
         /// <param name="index">Zero-based index to insert item in</param>
         /// <param name="item">Item to insert</param>
         /// <exception cref="FieldAccessException">The error can be thrown if array is marked as read only and someone tries to edit the values.</exception>
-        public void Insert(int index, T item)
+        public bool Insert(int index, T item)
         {
+            if (Contains(item))
+                return false;
             list.Insert(index, item);
+            return true;
         }
-
-        /// <summary>
-        /// Receives <typeparamref name="T"/> <paramref name="item"/> and looking for it in the <typeparamref name="CustomHashSet"/>
-        /// </summary>
-        /// <param name="item">Item to look for.</param>
-        /// <returns>Zero-based index if item was found, otherwise -1.</returns>
-        public int LastIndexOf(T item) =>
-            list.LastIndexOf(item);
 
         /// <summary>
         /// If the <typeparamref name="CustomHashSet"/> contains the given <paramref name="item"/> it removes it.
@@ -139,13 +138,6 @@ namespace CustomCollectionsGeneric.Services.CustomHashSet
         /// <returns><paramref name="true"/> if item was removed, otherwise will return <paramref name="false"/>.</returns>
         public bool Remove(T item) =>
             list.Remove(item);
-
-        /// <summary>
-        /// If the <typeparamref name="CustomHashSet"/> contains the given <paramref name="item"/> one or more times it will remove all of them.
-        /// </summary>
-        /// <param name="item"><paramref name="item"/> to remove.</param>
-        /// <returns><paramref name="true"/> if the item was removed, otherwise <paramref name="false"/>.</returns>
-        public bool RemoveAll(T item) => list.RemoveAll(item);
 
         /// <summary>
         /// Reverses the <typeparamref name="CustomHashSet"/>

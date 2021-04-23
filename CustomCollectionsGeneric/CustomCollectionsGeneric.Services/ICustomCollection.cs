@@ -11,13 +11,10 @@ namespace CustomCollectionsGeneric.Services
         void AddRange(ICustomArray<T> collection);
         void AddRange(ICustomList<T> collection);
         bool Remove(T item);
-        bool RemoveAll(T item);
         void Reverse();
         void Sort();
         void SortDescending();
-        int LastIndexOf(T item);
         int IndexOf(T item);
-        void Insert(int index, T item);
         bool Any();
         bool Any(Func<T, bool> predicate);
     }

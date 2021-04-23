@@ -13,10 +13,13 @@ namespace CustomCollectionsGeneric.Services.CustomList
         void Add(T item);
         ReadOnlyCollection<T> AsReadOnly();
         bool Exists(Func<T, bool> match);
-
+        void Insert(int index,T item);
         T Find(Func<T, bool> predicate);
         CustomList<T> FindAll(Func<T, bool> predicate);
         void RemoveAt(int index);
         CustomArray<T> ToArray();
+        int LastIndexOf(T item);
+        bool RemoveAll(T item);
+
     }
 }
