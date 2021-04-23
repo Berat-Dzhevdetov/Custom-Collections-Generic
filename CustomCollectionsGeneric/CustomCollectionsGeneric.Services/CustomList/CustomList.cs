@@ -439,7 +439,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
         public void CopyTo(out CustomArray<T> array)
         {
             array = new CustomArray<T>(Count);
-            array = this.array.Clone();
+            array = this.CopyTo( array,0);
         }
         public void CopyTo(out CustomArray<T> array,int startIndex)
         {
@@ -452,6 +452,17 @@ namespace CustomCollectionsGeneric.Services.CustomList
                 result[i] = this.array[i];
             }
             array = result;
+        }
+        private CustomArray<T> CopyTo(CustomArray<T> array, int startIndex)
+        {
+            if (startIndex >= Count)
+                throw new ArgumentOutOfRangeException(givenParametarWasOutOfRange);
+            var result = new CustomArray<T>(Count - startIndex);
+            for (int i = startIndex; i < result.Length; i++)
+            {
+                result[i] = this.array[i];
+            }
+            return result;
         }
     }
 }

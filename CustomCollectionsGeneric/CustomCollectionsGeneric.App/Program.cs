@@ -10,14 +10,9 @@ namespace CustomCollectionsGeneric.App
     {
         static void Main(string[] args)
         {
-            var queue = new CustomQueue<int>();
-            //Act
-            var array = queue.ToArray();
-            //Assert
-            var a =  array.GetType().Name;
-
-            var c = new CustomList<int>() { 0, 2, 3, 4, 5 };
-            c.Reverse();
+            var b = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            var a = new CustomArray<int>(1);
+            b.CopyTo(out a);
             ;
         }
     }
