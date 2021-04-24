@@ -350,7 +350,7 @@ namespace CustomCollectionsGeneric.Services.CustomList
             if (!Any())
                 return;
             Sort();
-            array.Reverse();
+            Reverse();
         }
 
         /// <summary>

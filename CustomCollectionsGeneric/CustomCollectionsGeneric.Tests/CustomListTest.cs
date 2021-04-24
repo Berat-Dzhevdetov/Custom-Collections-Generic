@@ -231,8 +231,43 @@ namespace CustomCollectionsGeneric.Tests
         }
 
         //Sort,SortDescending Tests will be done soon due to bugs.
+        [TestMethod]
+        public void SortMethodShoulSortTheArray()
+        {
+            var testList = new CustomList<int>();
+            testList.Add(3);
+            testList.Add(2);
+            testList.Add(5);
+            testList.Add(1);
+            testList.Add(4);
+            testList.Sort();
 
-       [TestMethod]
+            for (int i = 0 ; i <list.Count; i++)
+            {
+                Assert.AreEqual(list[i], testList[i]);
+            }
+        }
+        [TestMethod]
+        public void SortDescendingMethodShoulSortTheArray()
+        {
+            var testList = new CustomList<int>();
+            testList.Add(3);
+            testList.Add(2);
+            testList.Add(5);
+            testList.Add(1);
+            testList.Add(4);
+
+            list.Reverse();
+
+            testList.SortDescending();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Assert.AreEqual(list[i], testList[i]);
+            }
+        }
+
+        [TestMethod]
        public void AnyMethodShoulFindAtLeastOneMatch()
         {
             Assert.AreEqual(true, list.Any(x=>x==1));
