@@ -29,26 +29,26 @@ namespace CustomCollectionsGeneric.Services.CustomStack
 
         public T Peek()
         {
-            if (Count == 0)
+            if (IsStackEmpty())
                 throw new InvalidOperationException(connotGetElementFromStackWhenIsEmpty);
 
-            return stack[Count-1];
+            return stack[Count - 1];
         }
         public bool TryPeek(out T item)
         {
             item = default(T);
 
-            if (Count == 0)
+            if (IsStackEmpty())
                 return false;
 
-            item= stack[Count - 1];
+            item = stack[Count - 1];
 
             return true;
         }
 
         public T Pop()
         {
-            if (Count == 0)
+            if (IsStackEmpty())
                 throw new InvalidOperationException(connotGetElementFromStackWhenIsEmpty);
 
             T elementToReturn = stack[Count - 1];
@@ -61,7 +61,7 @@ namespace CustomCollectionsGeneric.Services.CustomStack
         {
             item = default(T);
 
-            if (Count == 0)
+            if (IsStackEmpty())
                 return false;
 
             item = stack[Count - 1];
@@ -77,6 +77,15 @@ namespace CustomCollectionsGeneric.Services.CustomStack
         }
 
         public CustomArray<T> ToArray() => stack.ToArray();
+
+        private bool IsStackEmpty()
+        {
+            if (Count == 0)
+                return true;
+
+            return false;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             Reset();
