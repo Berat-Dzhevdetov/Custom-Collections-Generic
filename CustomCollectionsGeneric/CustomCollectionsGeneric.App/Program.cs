@@ -18,8 +18,7 @@ namespace CustomCollectionsGeneric.App
 
             var c = new CustomList<int>() { 0, 2, 3, 4, 5 };
             c.Reverse();
-            Stack<int> sa = new Stack<int>();
-            sa.Peek();
+            ;
         }
     }
 }

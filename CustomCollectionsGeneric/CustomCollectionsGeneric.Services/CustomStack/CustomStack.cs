@@ -34,6 +34,17 @@ namespace CustomCollectionsGeneric.Services.CustomStack
 
             return stack[Count-1];
         }
+        public bool TryPeek(out T item)
+        {
+            item = default(T);
+
+            if (Count == 0)
+                return false;
+
+            item= stack[Count - 1];
+
+            return true;
+        }
 
         public T Pop()
         {
@@ -45,6 +56,19 @@ namespace CustomCollectionsGeneric.Services.CustomStack
             stack.RemoveAt(Count - 1);
 
             return elementToReturn;
+        }
+        public bool TryPop(out T item)
+        {
+            item = default(T);
+
+            if (Count == 0)
+                return false;
+
+            item = stack[Count - 1];
+
+            stack.RemoveAt(Count - 1);
+
+            return true;
         }
 
         public void Push(T item)
