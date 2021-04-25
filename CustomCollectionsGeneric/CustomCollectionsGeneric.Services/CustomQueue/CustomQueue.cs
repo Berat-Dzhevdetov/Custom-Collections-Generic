@@ -69,8 +69,6 @@ namespace CustomCollectionsGeneric.Services.CustomQueue
         /// <param name="item">Item to add</param>
         public void Enqueue(T item)
         {
-            if (queue.Contains(item))
-                return;
             queue.Add(item);
         }
 

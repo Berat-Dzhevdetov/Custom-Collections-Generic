@@ -10,11 +10,11 @@ namespace CustomCollectionsGeneric.Tests
     public class CustomQueueTest
     {
         [TestMethod]
-        public void ShouldCannotAddSameValues()
+        public void ShouldAddValuesToQueue()
         {
             //Arange
             var queue = new CustomQueue<int>();
-            int exceptedResult = 1;
+            int exceptedResult = 2;
             //Act
             queue.Enqueue(1);
             queue.Enqueue(1);
