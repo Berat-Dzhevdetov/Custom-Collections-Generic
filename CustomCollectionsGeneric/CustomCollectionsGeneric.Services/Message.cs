@@ -11,5 +11,6 @@ namespace CustomCollectionsGeneric.Services
         public const string noMoreSpace = "There is no more space in ";
         public const string cannotAccessWhileArrayIsReadOnly = "Failed to access element reason: array is readonly";
         public const string cannotCreateEmptyArray = "Cannot create an array with less than zero elements";
+        public const string connotGetElementFromStackWhenIsEmpty = "Stack empty";
     }
 }
