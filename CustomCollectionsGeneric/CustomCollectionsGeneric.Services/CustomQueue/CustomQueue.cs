@@ -103,7 +103,7 @@ namespace CustomCollectionsGeneric.Services.CustomQueue
         /// <summary>
         /// Make from queue to array
         /// </summary>
-        /// <returns>New array of the queue</returns>
+        /// <returns>New arrayfrom the queue</returns>
         public CustomArray<T> ToArray() => queue.ToArray();
 
         public IEnumerator<T> GetEnumerator()
