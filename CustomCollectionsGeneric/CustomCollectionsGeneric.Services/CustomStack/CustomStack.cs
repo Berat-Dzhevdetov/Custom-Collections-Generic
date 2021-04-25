@@ -23,8 +23,16 @@ namespace CustomCollectionsGeneric.Services.CustomStack
             stack.AddRange(list);
         }
 
+        /// <summary>
+        /// All data in the stack will be cleared
+        /// </summary>
         public void Clear() => stack.Clear();
 
+        /// <summary>
+        /// Checks if the given item is in the Stack
+        /// </summary>
+        /// <param name="item">Item to look for</param>
+        /// <returns>True if item is in the Stack; otherwise false</returns>
         public bool Contains(T item) => stack.Contains(item);
 
         public T Peek()
