@@ -7,12 +7,11 @@ using static CustomCollectionsGeneric.Services.Message;
 
 namespace CustomCollectionsGeneric.Services.CustomStack
 {
-    class CustomStack<T> : ICustomStack<T>, IEnumerable<T>
+    public class CustomStack<T> : ICustomStack<T>, IEnumerable<T>
     {
         private CustomList<T> stack;
         private int currentIndex;
         public int Count => stack.Count;
-
         public CustomStack()
         {
             this.stack = new CustomList<T>();
@@ -102,7 +101,7 @@ namespace CustomCollectionsGeneric.Services.CustomStack
         /// <param name="item">Item to add</param>
         public void Push(T item)
         {
-            stack.Insert(Count, item);
+            stack.Add(item);
         }
         /// <summary>
         /// Make from stack to array
