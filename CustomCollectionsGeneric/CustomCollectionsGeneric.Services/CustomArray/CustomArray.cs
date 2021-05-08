@@ -197,7 +197,7 @@ namespace CustomCollectionsGeneric.Services.CustomArray
         private bool HasNext() =>
              this.currentIndex < this.Length;
 
-        public void Reset()
+        private void Reset()
         {
             currentIndex = 0;
         }
