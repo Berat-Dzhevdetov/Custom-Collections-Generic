@@ -1,4 +1,4 @@
-﻿using CustomCollectionsGeneric.Services.CustomArray;
+using CustomCollectionsGeneric.Services.CustomArray;
 using CustomCollectionsGeneric.Services.CustomList;
 using System;
 using System.Collections;
@@ -135,7 +135,7 @@ namespace CustomCollectionsGeneric.Services.CustomStack
         private bool HasNext() =>
              this.currentIndex < this.Count;
 
-        public void Reset()
+        private void Reset()
         {
             currentIndex = 0;
         }
