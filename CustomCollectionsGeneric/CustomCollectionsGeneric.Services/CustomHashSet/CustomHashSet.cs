@@ -183,7 +183,7 @@ namespace CustomCollectionsGeneric.Services.CustomHashSet
         private bool HasNext() =>
              this.currentIndex < this.Count;
 
-        public void Reset()
+        private void Reset()
         {
             currentIndex = 0;
         }
